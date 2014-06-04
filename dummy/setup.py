@@ -8,7 +8,7 @@ setup(
     version=ext.__version__,
     author=ext.__author__,
     description='Dummy app extension for Sloth CI',
-    long_description='Dummy Sloth CI app extension that replaces the default executor',
+    long_description='Dummy Sloth CI app extension that replaces the default executor.',
     author_email='moigagoo@live.com',
     url='https://bitbucket.org/moigagoo/sloth-ci-extensions',
     py_modules=['sloth_ci.ext.dummy'],
