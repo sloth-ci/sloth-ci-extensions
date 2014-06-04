@@ -1,0 +1,18 @@
+syntax: glob
+
+bin
+build
+include
+lib
+*.kdev4
+*.pyc
+*.log
+*.pyproj
+MANIFEST
+dist/
+test_server.conf
+docs/_build
+.kateproject*
+*~
+*.egg-info/*
+_build
