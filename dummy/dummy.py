@@ -1,5 +1,5 @@
-__title__ = 'sloth-ci-extensions.dummy'
-__version__ = '1.0.0'
+__title__ = 'sloth-ci.ext.dummy'
+__version__ = '1.0.1'
 __author__ = 'Konstantin Molchanov'
 __license__ = 'MIT'
 
