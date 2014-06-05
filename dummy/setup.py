@@ -3,6 +3,8 @@ from setuptools import setup
 import dummy as ext
 
 
+package = 'sloth_ci.ext'
+
 setup(
     name=ext.__title__,
     version=ext.__version__,
@@ -11,10 +13,10 @@ setup(
     long_description='Dummy Sloth CI app extension that replaces the default executor.',
     author_email='moigagoo@live.com',
     url='https://bitbucket.org/moigagoo/sloth-ci-extensions',
-    py_modules=['sloth_ci.ext.dummy'],
-    package_dir={'sloth_ci.ext': '.'},
+    py_modules=['%s.dummy' % package],
+    package_dir={package: '.'},
     install_requires = [
-        'sloth_ci'
+        'sloth_ci>=0.6.2'
     ],
     license='MIT',
     classifiers=[
