@@ -1,5 +1,5 @@
 ﻿__title__ = 'sloth-ci.ext.docker'
-__version__ = '0.0.2'
+__version__ = '0.0.3'
 __author__ = 'Konstantin Molchanov'
 __license__ = 'MIT'
 
@@ -32,7 +32,6 @@ def extend(cls):
                 except docker.APIError as e:
                         if e.response.status_code == 404:
                             self.docker_client.build(self.config['docker']['path_to_dockerfile'], tag=self.image)
-                            self.processing_logger.info('Image built: %s' % self.image)
 
                             container_id = self.docker_client.create_container(self.image, command=action)['Id']
 
@@ -40,6 +39,7 @@ def extend(cls):
                             raise
 
                 self.docker_client.start(container_id)
+                self.docker_client.attach(container_id, logs=True)
                 self.docker_client.commit(container_id, self.image)
                 self.docker_client.remove_container(container_id)
 
