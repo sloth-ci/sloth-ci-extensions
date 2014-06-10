@@ -1,5 +1,5 @@
 ﻿__title__ = 'sloth-ci.ext.docker'
-__version__ = '0.0.4'
+__version__ = '0.0.5'
 __author__ = 'Konstantin Molchanov'
 __license__ = 'MIT'
 
@@ -30,13 +30,13 @@ def extend(cls):
                     container_id = self.docker_client.create_container(self.image, command=action)['Id']
 
                 except docker.APIError as e:
-                        if e.response.status_code == 404:
-                            self.docker_client.build(self.config['docker']['path_to_dockerfile'], tag=self.image)
+                    if e.response.status_code == 404:
+                        self.docker_client.build(self.config['docker']['path_to_dockerfile'], tag=self.image)
 
-                            container_id = self.docker_client.create_container(self.image, command=action)['Id']
+                        container_id = self.docker_client.create_container(self.image, command=action)['Id']
 
-                        else:
-                            raise
+                    else:
+                        raise
 
                 self.docker_client.start(container_id)
                 self.docker_client.attach(container_id, logs=True)
