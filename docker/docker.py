@@ -4,7 +4,7 @@ __author__ = 'Konstantin Molchanov'
 __license__ = 'MIT'
 
 
-from docker import Client as DockerClient
+import docker
 
 
 def extend(cls):
@@ -12,7 +12,7 @@ def extend(cls):
         def __init__(self, config):
             super().__init__(config)
 
-            self.docker_client = DockerClient()
+            self.docker_client = docker.Client()
             self.image = self.name
 
         def execute(self, action):
