@@ -1,5 +1,5 @@
 ﻿__title__ = 'sloth-ci.ext.docker'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 __author__ = 'Konstantin Molchanov'
 __license__ = 'MIT'
 

@@ -16,7 +16,8 @@ setup(
     py_modules=['%s.docker' % package],
     package_dir={package: '.'},
     install_requires = [
-        'sloth_ci>=0.6.2'
+        'sloth_ci>=0.6.2',
+        'docker-py'
     ],
     license='MIT',
     classifiers=[
