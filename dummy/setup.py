@@ -13,7 +13,7 @@ setup(
     long_description='Dummy Sloth CI app extension that replaces the default executor.',
     author_email='moigagoo@live.com',
     url='https://bitbucket.org/moigagoo/sloth-ci-extensions',
-    py_modules=['%s.dummy' % package],
+    py_modules=['%s.%s' % (package, ext.__name__)],
     package_dir={package: '.'},
     install_requires = [
         'sloth_ci>=0.6.2'

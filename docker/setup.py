@@ -13,7 +13,7 @@ setup(
     long_description='Docker Sloth CI app extension that replaces the default executor with a Docker-based one.',
     author_email='moigagoo@live.com',
     url='https://bitbucket.org/moigagoo/sloth-ci-extensions',
-    py_modules=['%s.docker' % package],
+    py_modules=['%s.%s' % (package, ext.__name__)],
     package_dir={package: '.'},
     install_requires = [
         'sloth_ci>=0.6.2',
