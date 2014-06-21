@@ -4,6 +4,9 @@ __author__ = 'Konstantin Molchanov'
 __license__ = 'MIT'
 
 
+"""Docker Sloth CI app extension that replaces the default executor with a Docker-based one."""
+
+
 from docker import Client, APIError
 
 
