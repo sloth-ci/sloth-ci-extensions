@@ -1,10 +1,13 @@
 __title__ = 'sloth-ci.ext.html-logs'
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 __author__ = 'Konstantin Molchanov'
 __license__ = 'MIT'
 
 
 """This Sloth CI extension adds an extra HTML logger to Sloth CI apps."""
+
+
+import logging
 
 
 def extend(cls):
