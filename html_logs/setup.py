@@ -10,7 +10,7 @@ setup(
     version=ext.__version__,
     author=ext.__author__,
     description='Additional HTML logs for Sloth CI apps',
-    long_description='This Sloth CI extension adds an extra HTML logger to Sloth CI apps.',
+    long_description='Sloth CI extension that adds an extra HTML logger to Sloth CI apps.',
     author_email='moigagoo@live.com',
     url='https://bitbucket.org/moigagoo/sloth-ci-extensions',
     py_modules=['%s.%s' % (package, ext.__name__)],
@@ -20,7 +20,7 @@ setup(
     ],
     license='MIT',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'Programming Language :: Python',
