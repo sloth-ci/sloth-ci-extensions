@@ -1,4 +1,4 @@
-__title__ = 'sloth-ci.ext.html_logs'
+__title__ = 'sloth-ci.ext.html-logs'
 __version__ = '0.0.1'
 __author__ = 'Konstantin Molchanov'
 __license__ = 'MIT'
