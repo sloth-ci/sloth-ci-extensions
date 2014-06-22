@@ -3,7 +3,7 @@ __description__ = 'Dummy app extension for Sloth CI'
 __long_desciption__ = 'Dummy Sloth CI app extension that replaces the default executor.'
 __version__ = '1.0.3'
 __author__ = 'Konstantin Molchanov'
-__author_email = 'moigagoo@live.com'
+__author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
