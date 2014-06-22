@@ -3,7 +3,7 @@ __description__ = 'Logs for Sloth CI apps'
 __long_desciption__ = 'Sloth CI extension that adds a logger (can be rotating) to Sloth CI apps.'
 __version__ = '0.0.3'
 __author__ = 'Konstantin Molchanov'
-__author_email = 'moigagoo@live.com'
+__author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
