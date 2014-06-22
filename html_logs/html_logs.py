@@ -1,6 +1,9 @@
 __title__ = 'sloth-ci.ext.html-logs'
-__version__ = '1.0.0'
+__description__ = 'HTML logs for Sloth CI apps'
+__long_desciption__ = 'Sloth CI extension that adds a HTML logger to Sloth CI apps.'
+__version__ = '1.0.1'
 __author__ = 'Konstantin Molchanov'
+__author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
