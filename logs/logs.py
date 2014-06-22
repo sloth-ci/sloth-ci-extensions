@@ -1,7 +1,7 @@
 __title__ = 'sloth-ci.ext.logs'
 __description__ = 'Logs for Sloth CI apps'
 __long_desciption__ = 'Sloth CI extension that adds a logger (can be rotating) to Sloth CI apps.'
-__version__ = '0.0.2'
+__version__ = '0.0.3'
 __author__ = 'Konstantin Molchanov'
 __author_email = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -20,7 +20,7 @@ def extend(cls):
         def __init__(self, config):
             super().__init__(config)
             
-            log_config = self.config.get(__name__) or {}
+            log_config = self.config.get('logs') or {}
 
             formatter = logging.Formatter(
                 log_config.get('format') or '%(asctime)s | %(name)30s | %(levelname)10s | %(message)s'
