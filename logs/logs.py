@@ -1,4 +1,4 @@
-__title__ = 'sloth-ci.ext.html-logs'
+__title__ = 'sloth-ci.ext.logs'
 __description__ = 'Logs for Sloth CI apps'
 __long_desciption__ = 'Sloth CI extension that adds a logger (can be rotating) to Sloth CI apps.'
 __version__ = '0.0.1'
