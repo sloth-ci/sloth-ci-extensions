@@ -1,6 +1,9 @@
 __title__ = 'sloth-ci.ext.dummy'
+__description__ = 'Dummy app extension for Sloth CI'
+__long_desciption__ = 'Dummy Sloth CI app extension that replaces the default executor.'
 __version__ = '1.0.3'
 __author__ = 'Konstantin Molchanov'
+__author_email = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
@@ -23,7 +26,7 @@ def extend(cls):
         def __init__(self, config):
             super().__init__(config)
 
-            self.foo = config['dummy']['foo']
+            self.foo = config[__name__]['foo']
 
         def execute(self, action):
             print('Hello from a dummy executor that ignores the action and just does nothing.')
