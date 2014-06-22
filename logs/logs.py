@@ -1,7 +1,7 @@
 __title__ = 'sloth-ci.ext.logs'
 __description__ = 'Logs for Sloth CI apps'
 __long_desciption__ = 'Sloth CI extension that adds a logger (can be rotating) to Sloth CI apps.'
-__version__ = '0.0.4'
+__version__ = '1.0.0'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -13,6 +13,7 @@ __license__ = 'MIT'
 from os.path import abspath, join
 
 import logging
+import logging.handlers
 
 
 def extend(cls):
@@ -31,7 +32,7 @@ def extend(cls):
                     abspath(join(self.config['log_dir'], self.name + '.log')),
                     'a+',
                     maxBytes=log_config.get('max_bytes') or 0,
-                    backupCount=self.log_config.get('backup_count') or 0
+                    backupCount=log_config.get('backup_count') or 0
                 )
             else:
                 file_handler = logging.FileHandler(abspath(join(self.config['log_dir'], self.name + '.log')), 'a+')
