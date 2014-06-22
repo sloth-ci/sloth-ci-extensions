@@ -1,5 +1,5 @@
 __title__ = 'sloth-ci.ext.dummy'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 __author__ = 'Konstantin Molchanov'
 __license__ = 'MIT'
 
@@ -23,7 +23,7 @@ def extend(cls):
         def __init__(self, config):
             super().__init__(config)
 
-            self.foo = config['dummy']['foo']
+            self.foo = config[__name__]['foo']
 
         def execute(self, action):
             print('Hello from a dummy executor that ignores the action and just does nothing.')

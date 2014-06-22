@@ -1,7 +1,7 @@
 __title__ = 'sloth-ci.ext.logs'
 __description__ = 'Logs for Sloth CI apps'
 __long_desciption__ = 'Sloth CI extension that adds a logger (can be rotating) to Sloth CI apps.'
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 __author__ = 'Konstantin Molchanov'
 __author_email = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -20,16 +20,18 @@ def extend(cls):
         def __init__(self, config):
             super().__init__(config)
             
+            log_config = self.config.get(__name__) or {}
+
             formatter = logging.Formatter(
-                self.config['logs'].get('format') or '%(asctime)s | %(name)30s | %(levelname)10s | %(message)s'
+                log_config.get('format') or '%(asctime)s | %(name)30s | %(levelname)10s | %(message)s'
             )
             
-            if self.config['logs'].get('rotating'):
+            if log_config.get('rotating'):
                 file_handler = logging.RotatingFileHandler(
                     abspath(join(self.config['log_dir'], self.name + '.log')),
                     'a+',
-                    maxBytes=self.config['logs'].get('max_bytes') or 0,
-                    backupCount=self.config['logs'].get('backup_count') or 0
+                    maxBytes=log_config.get('max_bytes') or 0,
+                    backupCount=self.log_config.get('backup_count') or 0
                 )
             else:
                 file_handler = logging.FileHandler(abspath(join(self.config['log_dir'], self.name + '.log')), 'a+')
