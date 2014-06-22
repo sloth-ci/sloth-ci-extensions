@@ -23,7 +23,7 @@ def extend(cls):
         def __init__(self, config):
             super().__init__(config)
 
-            self.foo = config[__name__]['foo']
+            self.foo = config['dummy']['foo']
 
         def execute(self, action):
             print('Hello from a dummy executor that ignores the action and just does nothing.')

@@ -1,6 +1,9 @@
 ﻿__title__ = 'sloth-ci.ext.docker'
+__description__ = 'Docker app extension for Sloth CI'
+__long_description__ = 'Docker Sloth CI app extension that replaces the default executor with a Docker-based one.'
 __version__ = '0.1.2'
 __author__ = 'Konstantin Molchanov'
+__author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
@@ -15,9 +18,9 @@ def extend(cls):
         def __init__(self, config):
             super().__init__(config)
 
-            self.docker_client = Client(self.config[__name__].get('base_url'))
+            self.docker_client = Client(self.config['docker'].get('base_url'))
 
-            self.image = self.config[__name__].get('image') or self.name
+            self.image = self.config['docker'].get('image') or self.name
 
         def execute(self, action):
             """Execute an action inside a container, then commit the changes to the image and remove the container.
@@ -40,7 +43,7 @@ def extend(cls):
                 except APIError as e:
                     if e.response.status_code == 404:
                         self.docker_client.build(
-                            self.config[__name__].get('path_to_dockerfile') or '.',
+                            self.config['docker'].get('path_to_dockerfile') or '.',
                             tag=self.image
                         )
 
