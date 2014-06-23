@@ -1,6 +1,6 @@
 ﻿from setuptools import setup
 
-import docker_ as ext
+import ext
 
 
 package = 'sloth_ci.ext'
@@ -21,7 +21,7 @@ setup(
     ],
     license='MIT',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'Natural Language :: English',
         'Programming Language :: Python',
