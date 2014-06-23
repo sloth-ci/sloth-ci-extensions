@@ -1,7 +1,7 @@
 ﻿__title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
 __long_description__ = 'Docker executor Sloth CI app extension that replaces the default executor and runs actions inside a given Docker image.'
-__version__ = '0.1.5'
+__version__ = '0.1.6'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -36,7 +36,10 @@ def extend(cls):
 
             self._docker_config = self.config['docker_exec']
 
-            self._docker_client = Client(self._docker_config.get('base_url'))
+            self._docker_client = Client(
+                self._docker_config.get('base_url'),
+                timeout=10
+            )
 
             self._docker_image = self._docker_config.get('image') or self.name
 
