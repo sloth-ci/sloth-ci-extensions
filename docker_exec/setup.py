@@ -1,6 +1,6 @@
 ﻿from setuptools import setup
 
-import ext
+import docker_exec as ext
 
 
 package = 'sloth_ci.ext'
