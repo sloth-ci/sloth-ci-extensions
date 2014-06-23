@@ -1,7 +1,7 @@
 ﻿__title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
 __long_description__ = 'Docker executor Sloth CI app extension that replaces the default executor and runs actions inside a given Docker image.'
-__version__ = '0.1.4'
+__version__ = '0.1.5'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -52,7 +52,7 @@ def extend(cls):
 
             try:
                 try:
-                    container_id = self.docker_client.create_container(
+                    container_id = self._docker_client.create_container(
                         self._docker_image,
                         command=action,
                         working_dir=self.config.get('work_dir') or '.'
@@ -60,12 +60,12 @@ def extend(cls):
 
                 except APIError as e:
                     if e.response.status_code == 404:
-                        self.docker_client.build(
+                        self._docker_client.build(
                             self._docker_config.get('path_to_dockerfile') or '.',
                             tag=self._docker_image
                         )
 
-                        container_id = self.docker_client.create_container(
+                        container_id = self._docker_client.create_container(
                             self._docker_image,
                             command=action,
                             working_dir=self.config['work_dir']
@@ -74,13 +74,13 @@ def extend(cls):
                     else:
                         raise
 
-                self.docker_client.start(container_id)
-                self.docker_client.commit(
+                self._docker_client.start(container_id)
+                self._docker_client.commit(
                     container_id,
                     self._docker_image,
                     message=action
                 )
-                self.docker_client.remove_container(container_id)
+                self._docker_client.remove_container(container_id)
 
                 self.processing_logger.info('Action executed: %s', action)
                 return True
