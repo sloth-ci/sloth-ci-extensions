@@ -25,7 +25,8 @@ All config params are optional.
 """
 
 
-from docker import Client, APIError
+from docker import Client
+from docker.errors import APIError
 
 
 def extend(cls):
