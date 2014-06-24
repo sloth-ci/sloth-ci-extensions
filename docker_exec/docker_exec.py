@@ -21,7 +21,6 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
-__long_description__ = 'Docker executor Sloth CI app extension that replaces the default executor and runs actions inside a given Docker image.'
 __version__ = '1.0.1'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
