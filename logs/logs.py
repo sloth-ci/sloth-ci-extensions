@@ -49,7 +49,7 @@ def extend(cls):
 
             log_dir = log_config.get('log_dir') or '.'
 
-            formatter = logging.Formatter(
+            log_formatter = logging.Formatter(
                 log_config.get('format') or '%(asctime)s | %(name)30s | %(levelname)10s | %(message)s'
             )
             
@@ -63,7 +63,7 @@ def extend(cls):
             else:
                 file_handler = logging.FileHandler(abspath(join(log_dir, self.name + '.log')), 'a+')
 
-            file_handler.setFormatter(formatter)
+            file_handler.setFormatter(log_formatter)
 
             self.logger.addHandler(file_handler)
 
