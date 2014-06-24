@@ -1,6 +1,6 @@
 __title__ = 'sloth-ci.ext.html-logs'
 __description__ = 'HTML logs for Sloth CI apps'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -69,7 +69,7 @@ def extend(cls):
 </tr>'''
             )
 
-            if log_config.get('rotating'):
+            if html_log_config.get('rotating'):
                 html_file_handler = logging.handlers.RotatingFileHandler(
                     abspath(join(html_log_dir, self.name + '.html')),
                     'a+',
