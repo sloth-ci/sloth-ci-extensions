@@ -16,7 +16,7 @@ Config params:
 image = foo
 
 ;Path to the Docker daemon to connect to. Can point to either a tcp URL or a unix socket. If missing, the client connects to /var/run/docker.sock.
-base_url = tcp://555.55.55.55:5555 *.
+base_url = tcp://555.55.55.55:5555
 
 ;Docker API version used on the server. If missing, the latest version is used.
 version = 1.10
