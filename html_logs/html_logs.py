@@ -1,12 +1,4 @@
-__title__ = 'sloth-ci.ext.html-logs'
-__description__ = 'HTML logs for Sloth CI apps'
-__version__ = '1.0.3'
-__author__ = 'Konstantin Molchanov'
-__author_email__ = 'moigagoo@live.com'
-__license__ = 'MIT'
-
-
-"""Sloth CI extension that adds an extra HTML logger to Sloth CI apps.
+'''Sloth CI extension that adds an extra HTML logger to Sloth CI apps.
 
 .. important::
 
@@ -42,7 +34,15 @@ max_bytes = 500
 backup_count = 10
 
 All config params are optional.
-"""
+'''
+
+
+__title__ = 'sloth-ci.ext.html-logs'
+__description__ = 'HTML logs for Sloth CI apps'
+__version__ = '1.0.4'
+__author__ = 'Konstantin Molchanov'
+__author_email__ = 'moigagoo@live.com'
+__license__ = 'MIT'
 
 
 from os.path import abspath, join
