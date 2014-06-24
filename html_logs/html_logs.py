@@ -4,7 +4,7 @@
 
     The extension outputs **only** the table rows and columns, **not a complete HTML document**. This output can then be embedded into an HTML document between ``<table>`` and ``<table/>``.
 
-Each log field has it's own CSS class:
+Each log field has its own CSS class:
 
 log-timestamp
     Entry timestamp.
@@ -18,20 +18,20 @@ log-level
 log-message
     Entry message.
 
-Config params:
+Config params::
 
-[html_logs]
-;Directory to store the HTML logs. If missing, current directory is used.
-log_dir = logs/html
+    [html_logs]
+    ;Directory to store the HTML logs. If missing, current directory is used.
+    log_dir = logs/html
 
-;Rotating or not. If missing, False is considered.
-rotating = True
+    ;Rotating or not. If missing, False is considered.
+    rotating = True
 
-;Rotating log param. Max filesize before the log is rotated. If missing, 0 is considered, i.e. never rotated.
-max_bytes = 500
+    ;Rotating log param. Max filesize before the log is rotated. If missing, 0 is considered, i.e. never rotated.
+    max_bytes = 500
 
-;Rotating log param. Max number of log files. If missing, 0 is considered, i.e. unlimited.
-backup_count = 10
+    ;Rotating log param. Max number of log files. If missing, 0 is considered, i.e. unlimited.
+    backup_count = 10
 
 All config params are optional.
 '''
@@ -39,7 +39,7 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.html-logs'
 __description__ = 'HTML logs for Sloth CI apps'
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
