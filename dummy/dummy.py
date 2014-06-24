@@ -1,13 +1,12 @@
-__title__ = 'sloth-ci.ext.dummy'
-__description__ = 'Dummy app extension for Sloth CI'
-__long_desciption__ = 'Dummy Sloth CI app extension that replaces the default executor.'
-__version__ = '1.0.3'
-__author__ = 'Konstantin Molchanov'
-__author_email__ = 'moigagoo@live.com'
-__license__ = 'MIT'
+'''Dummy Sloth CI app extension that replaces the default executor.
 
+Config params::
 
-"""Dummy Sloth CI app extension that replaces the default executor.
+    [dummy]
+    ;Some param. If missing, "baz" is used.
+    foo = bar
+
+All config params are optional.
 
 This extension can be used as a reference when creating *real* extensions.
 
@@ -18,7 +17,15 @@ Extensions are declared in the [extensions] section in the Sloth app config and 
 An extension is a module containing a single function ``extend(cls)``, which in turn declares a new class called by convention Sloth. It inherits from ``cls``. Its minimal ``__init__`` method must initialize the parent class instance.
 
 Methods of the Sloth class will replace the methods of the same name in the original sloth_ci.sloth.Sloth class.
-"""
+'''
+
+
+__title__ = 'sloth-ci.ext.dummy'
+__description__ = 'Dummy app extension for Sloth CI'
+__version__ = '1.0.4'
+__author__ = 'Konstantin Molchanov'
+__author_email__ = 'moigagoo@live.com'
+__license__ = 'MIT'
 
 
 def extend(cls):
@@ -26,7 +33,9 @@ def extend(cls):
         def __init__(self, config):
             super().__init__(config)
 
-            self.foo = config[__name__]['foo']
+            dummy_config = self.config.get('dummy') or {}
+
+            self.foo = dummy_config.get('foo') or 'baz'
 
         def execute(self, action):
             print('Hello from a dummy executor that ignores the action and just does nothing.')
