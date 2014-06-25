@@ -1,4 +1,4 @@
-﻿'''Docker executor Sloth CI app extension that replaces the default executor and runs actions inside a given Docker image.
+﻿"""Docker executor Sloth CI app extension that replaces the default executor and runs actions inside a given Docker image.
 
 Config params::
 
@@ -16,7 +16,7 @@ Config params::
     path_to_dockerfile = docker/files
 
 All config params are optional.
-'''
+"""
 
 
 __title__ = 'sloth-ci.ext.docker_exec'

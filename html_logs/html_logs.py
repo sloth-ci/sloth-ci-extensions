@@ -1,4 +1,4 @@
-'''Sloth CI extension that adds an extra HTML logger to Sloth CI apps.
+"""Sloth CI extension that adds an extra HTML logger to Sloth CI apps.
 
 .. important::
 
@@ -34,7 +34,7 @@ Config params::
     backup_count = 10
 
 All config params are optional.
-'''
+"""
 
 
 __title__ = 'sloth-ci.ext.html-logs'
@@ -61,12 +61,12 @@ def extend(cls):
             html_log_dir = html_log_config.get('log_dir') or '.'
 
             html_formatter = logging.Formatter(
-'''<tr>
+"""<tr>
     <td class="log-timestamp">%(asctime)s</td>
     <td class="log-name">%(name)s</td>
     <td class="log-level">%(levelname)s</td>
     <td class="log-message">%(message)s</td>
-</tr>'''
+</tr>"""
             )
 
             if html_log_config.get('rotating'):
