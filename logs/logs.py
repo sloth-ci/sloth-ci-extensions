@@ -1,4 +1,4 @@
-"""Sloth CI extension that adds a logger (can be rotating and timed rotating) to Sloth CI apps.
+'''Sloth CI extension that adds a logger (can be rotating and timed rotating) to Sloth CI apps.
 
 Config params::
 
@@ -22,7 +22,7 @@ Config params::
     backup_count = 10
 
 All config params are optional.
-"""
+'''
 
 
 __title__ = 'sloth-ci.ext.logs'

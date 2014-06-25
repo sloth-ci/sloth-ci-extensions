@@ -1,4 +1,4 @@
-"""Dummy Sloth CI app extension that replaces the default executor.
+'''Dummy Sloth CI app extension that replaces the default executor.
 
 Config params::
 
@@ -17,7 +17,7 @@ Extensions are declared in the [extensions] section in the Sloth app config and 
 An extension is a module containing a single function ``extend(cls)``, which in turn declares a new class called by convention Sloth. It inherits from ``cls``. Its minimal ``__init__`` method must initialize the parent class instance.
 
 Methods of the Sloth class will replace the methods of the same name in the original sloth_ci.sloth.Sloth class.
-"""
+'''
 
 
 __title__ = 'sloth-ci.ext.dummy'

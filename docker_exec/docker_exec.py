@@ -1,4 +1,4 @@
-﻿"""Docker executor Sloth CI app extension that replaces the default executor and runs actions inside a given Docker image.
+﻿'''Docker executor Sloth CI app extension that replaces the default executor and runs actions inside a given Docker image.
 
 Config params::
 
@@ -16,7 +16,7 @@ Config params::
     path_to_dockerfile = docker/files
 
 All config params are optional.
-"""
+'''
 
 
 __title__ = 'sloth-ci.ext.docker_exec'
@@ -48,12 +48,12 @@ def extend(cls):
             self._docker_image = self._docker_config.get('image') or self.name
 
         def execute(self, action):
-            """Execute an action inside a container, then commit the changes to the image and remove the container.
+            '''Execute an action inside a container, then commit the changes to the image and remove the container.
 
             :param action: action to be executed
 
             :returns: True if successful, Exception otherwise
-            """
+            '''
 
             self.processing_logger.info('Executing action: %s', action)
 
