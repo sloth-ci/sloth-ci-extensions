@@ -39,13 +39,14 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.html-logs'
 __description__ = 'HTML logs for Sloth CI apps'
-__version__ = '1.0.5'
+__version__ = '1.0.6'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
-from os.path import abspath, join
+from os.path import abspath, join, exists
+from os import makedirs
 
 import logging
 import logging.handlers
@@ -59,6 +60,9 @@ def extend(cls):
             html_log_config = self.config.get('html_logs') or {}
 
             html_log_dir = html_log_config.get('log_dir') or '.'
+
+            if not exists(abspath(html_log_dir)):
+                makedirs(abspath(html_log_dir))
 
             html_formatter = logging.Formatter(
 '''<tr>
