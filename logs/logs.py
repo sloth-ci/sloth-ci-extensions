@@ -27,13 +27,14 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.logs'
 __description__ = 'Logs for Sloth CI apps'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
-from os.path import abspath, join
+from os.path import abspath, join, exists
+from os import makedirs
 
 import logging
 import logging.handlers
@@ -47,6 +48,9 @@ def extend(cls):
             log_config = self.config.get('logs') or {}
 
             log_dir = log_config.get('log_dir') or '.'
+
+            if not exists(abspath(log_dir)):
+                makedirs(abspath(log_dir))
 
             log_formatter = logging.Formatter(
                 log_config.get('format') or '%(asctime)s | %(name)30s | %(levelname)10s | %(message)s'
