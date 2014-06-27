@@ -21,7 +21,7 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -75,7 +75,7 @@ def extend(cls):
                         container_id = self._docker_client.create_container(
                             self._docker_image,
                             command=action,
-                            working_dir=self.config['work_dir']
+                            working_dir=self.config.get('work_dir') or '.'
                         )['Id']
 
                     else:
