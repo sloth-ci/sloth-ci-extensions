@@ -21,7 +21,7 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -43,7 +43,7 @@ def extend(cls):
                 timeout=10
             )
 
-            self._docker_client._version = self._docker_config.get('version') or self._docker_client._version
+            self._docker_client._version = str(self._docker_config.get('version') or self._docker_client._version)
 
             self._docker_image = self._docker_config.get('image') or self.name
 
