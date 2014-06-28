@@ -83,7 +83,7 @@ def extend(cls):
 
                 self._docker_client.start(container_id)
 
-                for _ in self._docker_client.attach(logs=True, stream=True):
+                for _ in self._docker_client.attach(container_id, logs=True, stream=True):
                     pass
 
                 self._docker_client.commit(
