@@ -21,7 +21,7 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
-__version__ = '1.0.5'
+__version__ = '1.0.6'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -83,8 +83,8 @@ def extend(cls):
 
                 self._docker_client.start(container_id)
 
-                for _ in self._docker_client.attach(container_id, logs=True, stream=True):
-                    pass
+                for log in self._docker_client.attach(container_id, logs=True, stream=True):
+                    self.processing_log.debug('%s', log)
 
                 self._docker_client.commit(
                     container_id,
