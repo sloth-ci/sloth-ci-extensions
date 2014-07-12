@@ -21,14 +21,13 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
-__version__ = '1.0.6'
+__version__ = '1.0.7'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
 from docker import Client
-from docker.errors import APIError
 
 
 def extend(cls):
@@ -58,28 +57,13 @@ def extend(cls):
             self.processing_logger.info('Executing action: %s', action)
 
             try:
-                try:
-                    container_id = self._docker_client.create_container(
-                        self._docker_image,
-                        command=action,
-                        working_dir=self.config.get('work_dir') or '.'
-                    )['Id']
-
-                except APIError as e:
-                    if e.response.status_code == 404:
-                        self._docker_client.build(
-                            self._docker_config.get('path_to_dockerfile') or '.',
-                            tag=self._docker_image
-                        )
-
-                        container_id = self._docker_client.create_container(
-                            self._docker_image,
-                            command=action,
-                            working_dir=self.config.get('work_dir') or '.'
-                        )['Id']
-
-                    else:
-                        raise
+                container_id = self._docker_client.create_container(
+                    self._docker_image,
+                    command=action,
+                    working_dir=self.config.get('work_dir') or '.',
+                    mem_limit = self._docker_config.get('memory_limit') or 0,
+                    cpu_shares = self._docker_config.get('cpu_share') or None
+                )['Id']
 
                 self._docker_client.start(container_id)
 
