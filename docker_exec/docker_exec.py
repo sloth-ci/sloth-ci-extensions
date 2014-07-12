@@ -15,6 +15,12 @@ Config params::
     ;Path to the Dockerfile used to build an image if it doesn't exist. If missing, current directory is used.
     path_to_dockerfile = docker/files
 
+    ;Memory limit in MB.
+    memory_limit = 10
+
+    ;CPU share in per cent.
+    cpu_share = 5
+
 All config params are optional.
 '''
 
