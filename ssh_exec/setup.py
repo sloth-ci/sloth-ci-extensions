@@ -16,7 +16,7 @@ setup(
     py_modules=['%s.%s' % (package, ext.__name__)],
     package_dir={package: '.'},
     install_requires = [
-        'sloth_ci>=0.6.2',
+        'sloth_ci>=0.7.5',
         'paramiko'
     ],
     license='MIT',
