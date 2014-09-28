@@ -67,9 +67,9 @@ def extend(cls):
                         username=self._ssh_config['username'],
                         password=self._ssh_config['password'],
                     )
-                    
+
                     stdin, stdout, stderr = self._ssh_client.exec_command(action)
-                    
+
                     for log in stdout:
                         self.processing_log.debug('%s', log)
 
