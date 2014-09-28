@@ -28,7 +28,6 @@ __license__ = 'MIT'
 
 
 from paramiko import SSHClient
-from urllib.parse import urlparse
 
 
 def extend(cls):
@@ -63,7 +62,13 @@ def extend(cls):
             
             for host in (self._ssh_config.get('hosts'),):
                 try:
-                    hostname, port = host.split(':')[0], 22
+                    split_host = host.split(':')
+                    hostname = split_host[0]
+
+                    if len(split_host) == 2:
+                        port = int(split_host[1])
+                    else:
+                        port = 22
 
                     username = self._ssh_config.get('username')
                     password = self._ssh_config.get('password')
