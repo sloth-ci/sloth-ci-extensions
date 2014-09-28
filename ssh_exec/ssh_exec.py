@@ -40,10 +40,16 @@ def extend(cls):
 
             self._ssh_client = SSHClient()
 
+            self.processing_logger.debug('Loading system host keys.')
             self._ssh_client.load_system_host_keys()
 
-            for key in self._ssh_config['keys']:
-                self._ssh_client.load_host_keys(key)
+            keys = self._ssh_config.get('keys')
+
+            if keys:
+                self.processing_logger.debug('Loading additional host keys: %s' % keys)
+                
+                for key in (keys,):
+                    self._ssh_client.load_host_keys(key)
 
         def execute(self, action):
             '''Execute an action on a remote host (or hosts).
@@ -54,27 +60,27 @@ def extend(cls):
             '''
 
             self.processing_logger.info('Executing action: %s', action)
-
-            for host in self._ssh_config['hosts']:
+            
+            for host in (self._ssh_config.get('hosts'),):
                 try:
-                    parsed_host = urlparse(host)
+                    hostname, port = host.split(':')[0], 22
 
-                    hostname, port = parsed_host.hostname, parsed_host.port
+                    username = self._ssh_config.get('username')
+                    password = self._ssh_config.get('password')
+
+                    self.processing_logger.debug('Connecting to %s:%d with username %s (password %s)' % (hostname, port, username, password))
 
                     self._ssh_client.connect(
                         hostname=hostname,
-                        port=port or 22,
-                        username=self._ssh_config['username'],
-                        password=self._ssh_config['password'],
+                        port=port,
+                        username=username,
+                        password=password,
                     )
 
                     stdin, stdout, stderr = self._ssh_client.exec_command(action)
 
                     for log in stdout:
-                        self.processing_log.debug('%s', log)
-
-                    for log in stderr:
-                        self.processing_log.debug('%s', log)
+                        self.processing_logger.debug('%s', log)
 
                     self.processing_logger.info('Action executed: %s', action)
                     return True
