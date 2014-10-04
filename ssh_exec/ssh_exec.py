@@ -20,8 +20,8 @@ Username and password config params are optional.
 
 
 __title__ = 'sloth-ci.ext.ssh_exec'
-__description__ = 'SSH executor app extension for Sloth CI'
-__version__ = '0.0.1'
+__description__ = 'SSH executor extension for Sloth CI'
+__version__ = '1.0.0'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -39,13 +39,13 @@ def extend(cls):
 
             self._ssh_client = SSHClient()
 
-            self.processing_logger.debug('Loading system host keys.')
+            self.logger.debug('Loading system host keys.')
             self._ssh_client.load_system_host_keys()
 
             keys = self._ssh_config.get('keys')
 
             if keys:
-                self.processing_logger.debug('Loading additional host keys: %s' % keys)
+                self.logger.debug('Loading additional host keys: %s' % keys)
                 
                 for key in (keys,):
                     self._ssh_client.load_host_keys(key)
@@ -73,7 +73,7 @@ def extend(cls):
                     username = self._ssh_config.get('username')
                     password = self._ssh_config.get('password')
 
-                    self.processing_logger.debug('Connecting to %s:%d with username %s (password %s)' % (hostname, port, username, password))
+                    self.processing_logger.debug('Connecting to %s:%d with username %s)' % (hostname, port, username))
 
                     self._ssh_client.connect(
                         hostname=hostname,
