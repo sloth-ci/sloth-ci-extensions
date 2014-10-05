@@ -21,7 +21,7 @@ Username and password config params are optional.
 
 __title__ = 'sloth-ci.ext.ssh_exec'
 __description__ = 'SSH executor extension for Sloth CI'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -84,8 +84,11 @@ def extend(cls):
 
                     stdin, stdout, stderr = self._ssh_client.exec_command(action)
 
-                    for log in stdout:
-                        self.processing_logger.debug('%s', log)
+                    for out in stdout:
+                        self.processing_logger.debug('%s', out)
+
+                    for err in stderr:
+                        self.processing_logger.debug('%s', err)
 
                     self.processing_logger.info('Action executed: %s', action)
                     return True
