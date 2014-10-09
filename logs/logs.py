@@ -27,7 +27,7 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.logs'
 __description__ = 'Logs for Sloth CI apps'
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -57,20 +57,24 @@ def extend(cls):
             )
             
             if log_config.get('rotating'):
-                file_handler = logging.handlers.RotatingFileHandler(
+                self.file_handler = logging.handlers.RotatingFileHandler(
                     abspath(join(log_dir, self.name + '.log')),
                     'a+',
                     maxBytes=log_config.get('max_bytes') or 0,
                     backupCount=log_config.get('backup_count') or 0
                 )
             else:
-                file_handler = logging.FileHandler(abspath(join(log_dir, self.name + '.log')), 'a+')
+                self.file_handler = logging.FileHandler(abspath(join(log_dir, self.name + '.log')), 'a+')
 
-            file_handler.setFormatter(log_formatter)
+            self.file_handler.setFormatter(log_formatter)
 
-            self.logger.addHandler(file_handler)
+            self.logger.addHandler(self.file_handler)
 
             if log_config.get('level'):
                 self.logger.setLevel(log_config.get('level'))
+
+        def stop(self):
+            super().stop()
+            self.logger.removeHandler(self.file_handler)
 
     return Sloth
