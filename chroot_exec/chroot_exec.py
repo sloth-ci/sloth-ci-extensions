@@ -10,7 +10,7 @@ Config params::
 
 __title__ = 'sloth-ci.ext.chroot_exec'
 __description__ = 'Chroot executor extension for Sloth CI'
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -26,7 +26,7 @@ def extend(cls):
 
             chroot_config = self.config.get('chroot_exec')
 
-            self.path = chroot_config.get(path)
+            self.path = chroot_config.get('path')
 
         def execute(self, action):
             self.processing_logger.debug('Changing the root directory to %s' % self.path)
