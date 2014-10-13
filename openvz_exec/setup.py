@@ -1,6 +1,6 @@
 ﻿from setuptools import setup
 
-import docker_exec as ext
+import openvz_exec as ext
 
 
 package = 'sloth_ci.ext'
@@ -17,7 +17,6 @@ setup(
     package_dir={package: '.'},
     install_requires = [
         'sloth_ci>=0.6.2',
-        'docker-py'
     ],
     license='MIT',
     classifiers=[
