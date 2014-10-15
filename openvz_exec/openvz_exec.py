@@ -10,7 +10,7 @@ Config params::
 
 __title__ = 'sloth-ci.ext.openvz_exec'
 __description__ = 'OpenVZ executor app extension for Sloth CI'
-__version__ = '0.0.1'
+__version__ = '1.0.0'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -24,14 +24,12 @@ def extend(cls):
             self._openvz_config = self.config['openvz_exec']
 
         def execute(self, action):
-            '''Execute an action inside an OpenVZ container.
+            '''Execute an action inside an OpenVZ container. The container must exist and be running.
 
             :param action: action to be executed
 
             :returns: True if successful, Exception otherwise
             '''
-
-            self.processing_logger.info('Executing action: %s', action)
 
             try:
                 ctid = self._openvz_config['ctid']
@@ -40,7 +38,6 @@ def extend(cls):
 
                 super().execute(openvz_exec_command + ' ' + action)
 
-                self.processing_logger.info('Action executed: %s', action)
                 return True
 
             except Exception:
