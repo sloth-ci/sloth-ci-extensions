@@ -10,7 +10,7 @@ Config params::
 
 __title__ = 'sloth-ci.ext.openvz_exec'
 __description__ = 'OpenVZ executor app extension for Sloth CI'
-__version__ = '1.0.1'
+__version__ = '1.0.0'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -22,18 +22,6 @@ def extend(cls):
             super().__init__(config)
 
             self._openvz_config = self.config['openvz_exec']
-            self._openvz_ctid = self._openvz_config['ctid']
-
-        def process_queue(self, params):
-            self.processing_logger.debug('Starting OpenVZ container %d' % self._openvz_ctid)
-            openvz_start_command = 'vzctl start %d' % self._openvz_ctid
-            super().execute(openvz_start_command)
-            
-            super().process_queue()
-            
-            self.processing_logger.debug('Stopping OpenVZ container %d' % self._openvz_ctid)
-            openvz_stop_command = 'vzctl stop %d' % self._openvz_ctid
-            super().execute(openvz_stop_command)
 
         def execute(self, action):
             '''Execute an action inside an OpenVZ container. The container must exist and be running.
