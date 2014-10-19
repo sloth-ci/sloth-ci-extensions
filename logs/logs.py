@@ -3,7 +3,7 @@
 Config params::
 
     [logs]
-    ;Directory to store the logs. If missing, current directory is used.
+    ;Directory to store the logs. If missing, Sloth's default log directory is used.
     log_dir = logs
 
     ;Logging level. Can be either a numeric value (e.g. 10) or a level name (e.g. DEBUG). If missing, Sloth CI's defalt is used (20, INFO). Refer to https://docs.python.org/3.4/library/logging.html#levels.
@@ -27,7 +27,7 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.logs'
 __description__ = 'Logs for Sloth CI apps'
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -39,6 +39,8 @@ from os import makedirs
 import logging
 import logging.handlers
 
+from sloth_ci.utils import get_default_logs_path
+
 
 def extend(cls):
     class Sloth(cls):
@@ -47,7 +49,7 @@ def extend(cls):
             
             log_config = self.config.get('logs') or {}
 
-            log_dir = log_config.get('log_dir') or '.'
+            log_dir = log_config.get('log_dir') or join(get_default_logs_path(), 'apps')
 
             if not exists(abspath(log_dir)):
                 makedirs(abspath(log_dir))
