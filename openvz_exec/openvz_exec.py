@@ -3,14 +3,18 @@
 Config params::
 
     [openvz_exec]
-    ;Container id.
-    ctid = 123
+    ;Container name.
+    container_name = foo
+    ;Container ID.
+    container_id = 123
+
+If name is provided, ID is ignored. If name is not provided, ID is mandatory.
 '''
 
 
 __title__ = 'sloth-ci.ext.openvz_exec'
 __description__ = 'OpenVZ executor app extension for Sloth CI'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -32,9 +36,15 @@ def extend(cls):
             '''
 
             try:
-                ctid = self._openvz_config['ctid']
+                container_name = self._openvz_config.get('container_name')
 
-                openvz_exec_command = 'vzctl exec %d' % ctid
+                if container_name:
+                    openvz_exec_command = 'vzctl exec %s' % container_name
+
+                else:
+                    container_id = self._openvz_config['container_id']
+                    
+                    openvz_exec_command = 'vzctl exec %d' % container_id
 
                 super().execute(openvz_exec_command + ' ' + action)
 
