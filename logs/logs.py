@@ -39,17 +39,15 @@ from os import makedirs
 import logging
 import logging.handlers
 
-from sloth_ci.utils import get_default_logs_path
-
 
 def extend(cls):
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
             
-            log_config = self.config.get('logs') or {}
+            log_config = self.config['extensions'].get('logs', {})
 
-            log_dir = log_config.get('log_dir') or join(get_default_logs_path(), 'apps')
+            log_dir = log_config.get('log_dir')
 
             if not exists(abspath(log_dir)):
                 makedirs(abspath(log_dir))
