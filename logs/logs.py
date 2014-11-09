@@ -40,14 +40,15 @@ import logging
 import logging.handlers
 
 
-def extend(cls):
+def extend(cls, extension):
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
             
-            log_config = self.config['extensions'].get('logs', {})
-
-            log_dir = log_config.get('log_dir')
+            log_config = self.config['extensions'].get(extension, {})
+            
+            log_dir = log_config.get('path')
+            log_filename = log_config.get('filename', self.name + '.log')
 
             if not exists(abspath(log_dir)):
                 makedirs(abspath(log_dir))
@@ -57,24 +58,29 @@ def extend(cls):
             )
             
             if log_config.get('rotating'):
-                self.file_handler = logging.handlers.RotatingFileHandler(
-                    abspath(join(log_dir, self.name + '.log')),
+                file_handler = logging.handlers.RotatingFileHandler(
+                    abspath(join(log_dir, log_filename)),
                     'a+',
                     maxBytes=log_config.get('max_bytes') or 0,
                     backupCount=log_config.get('backup_count') or 0
                 )
             else:
-                self.file_handler = logging.FileHandler(abspath(join(log_dir, self.name + '.log')), 'a+')
+                file_handler = logging.FileHandler(abspath(join(log_dir, log_filename)), 'a+')
 
-            self.file_handler.setFormatter(log_formatter)
+            file_handler.setFormatter(log_formatter)
 
-            self.logger.addHandler(self.file_handler)
+            file_handler.setLevel(log_config.get('level', logging.INFO))
+            
+            if file_handler.level < self.logger.level:
+                self.logger.setLevel(file_handler.level)
 
-            if log_config.get('level'):
-                self.logger.setLevel(log_config.get('level'))
+            self.logger.addHandler(file_handler)
+
+            self.log_handlers[extension] = file_handler
 
         def stop(self):
             super().stop()
-            self.logger.removeHandler(self.file_handler)
+            self.logger.removeHandler(self.log_handlers.pop(extension))
+            
 
     return Sloth
