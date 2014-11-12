@@ -1,0 +1,23 @@
+listen_point: test
+
+provider:
+    dummy:
+        message: test
+
+extensions:
+    debug_logs:
+        module: logs
+        path: debug_logs
+        filename: test_debug.log
+        level: DEBUG
+        # rotating: true
+        # max_bytes: 500
+        # backup_count: 10
+
+
+actions:
+    - touch {foo}.txt
+    - echo Hello {message}
+
+params:
+    foo: bar
