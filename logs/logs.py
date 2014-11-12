@@ -1,33 +1,33 @@
 '''Sloth CI extension that adds a logger (can be rotating and timed rotating) to Sloth CI apps.
 
-Config params::
+Extension params::
+    
+    # Use the module sloth-ci.ext.logs
+    module: logs
 
-    [logs]
-    ;Directory to store the logs. If missing, Sloth's default log directory is used.
-    log_dir = logs
+    # Set the log path. Default is the current dir.
+    path: debug_logs
+    
+    # Log filename. If not given, slug of the app's listen point will be used.
+    filename: test_debug.log
 
-    ;Logging level. Can be either a numeric value (e.g. 10) or a level name (e.g. DEBUG). If missing, Sloth CI's defalt is used (20, INFO). Refer to https://docs.python.org/3.4/library/logging.html#levels.
-    level = 10
+    # Log level (number or valid Python logging level string)
+    level: DEBUG
 
-    ;Log message format. If missing, the default format is used: %(asctime)s | %(name)30s | %(levelname)10s | %(message)s
-    format = %(asctime)s - %(name)s - %(levelname)s - %(message)s
+    # Make logs rotating. Default is false.
+    # rotating: true
 
-    ;Rotating or not. If missing, False is considered.
-    rotating = True
+    # If rotating, maximum size of a log file in bytes.
+    # max_bytes: 500
 
-    ;Rotating log param. Max filesize before the log is rotated. If missing, 0 is considered, i.e. never rotated.
-    max_bytes = 500
-
-    ;Rotating log param. Max number of log files. If missing, 0 is considered, i.e. unlimited.
-    backup_count = 10
-
-All config params are optional.
+    # If rotating, maximum number or log files to keep.
+    # backup_count: 10
 '''
 
 
 __title__ = 'sloth-ci.ext.logs'
 __description__ = 'Logs for Sloth CI apps'
-__version__ = '1.0.5'
+__version__ = '1.0.6'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -47,7 +47,7 @@ def extend(cls, extension):
             
             log_config = self.config['extensions'].get(extension, {})
             
-            log_dir = log_config.get('path')
+            log_dir = log_config.get('path', '.')
             log_filename = log_config.get('filename', self.name + '.log')
 
             if not exists(abspath(log_dir)):
