@@ -6,14 +6,26 @@ provider:
 
 extensions:
     debug_logs:
+        # Use the module sloth-ci.ext.logs
         module: logs
-        path: debug_logs
-        filename: test_debug.log
-        level: DEBUG
-        # rotating: true
-        # max_bytes: 500
-        # backup_count: 10
 
+        # Set the log path. Default is the current dir.
+        path: debug_logs
+    
+        # Log filename. If not given, slug of the app's listen point will be used.
+        filename: test_debug.log
+
+        # Log level (number or valid Python logging level string)
+        level: DEBUG
+
+        # Make logs rotating. Default is false.
+        # rotating: true
+
+        # If rotating, maximum size of a log file in bytes.
+        # max_bytes: 500
+
+        # If rotating, maximum number or log files to keep.
+        # backup_count: 10
 
 actions:
     - touch {foo}.txt
