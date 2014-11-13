@@ -1,0 +1,24 @@
+listen_point: test
+
+provider:
+    dummy:
+        message: test
+
+
+extensions:
+    execute_in_openvz:
+        # Use the sloth-ci.ext.openvz_exec module.
+        module: openvz_exec
+
+        # Container name.
+        container_name = foo
+        
+        # Container ID.
+        # container_id = 123
+
+actions:
+    - touch {foo}.txt
+    - echo Hello {message}
+
+params:
+    foo: bar
