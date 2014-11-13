@@ -1,0 +1,10 @@
+listen_point: test
+
+provider:
+    dummy:
+        message: test
+
+extensions:
+    dummy:
+        module: dummy
+        foo: bar
