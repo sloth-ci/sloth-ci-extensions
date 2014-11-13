@@ -33,7 +33,7 @@ def extend(cls, extension):
         def __init__(self, config):
             super().__init__(config)
 
-            dummy_config = self.config['extensions'].get('dummy', {})
+            dummy_config = self.config['extensions'][extension]
 
             self.foo = dummy_config.get('foo') or 'baz'
 

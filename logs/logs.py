@@ -45,7 +45,7 @@ def extend(cls, extension):
         def __init__(self, config):
             super().__init__(config)
             
-            log_config = self.config['extensions'].get(extension, {})
+            log_config = self.config['extensions'][extension]
             
             log_dir = log_config.get('path', '.')
             log_filename = log_config.get('filename', self.name + '.log')
