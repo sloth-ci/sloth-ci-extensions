@@ -2,24 +2,26 @@
 
 Config params::
 
-    [docker_exec]
-    ;Image name. If missing, the Sloth app name is used.
-    image = foo
+    # Use the module sloth-ci.ext.docker_exec.
+    module: docker_exec
+        
+    # Image name. If missing, the Sloth app name is used.
+    # image = foo
 
-    ;Path to the Docker daemon to connect to. Can point to either a tcp URL or a unix socket. If missing, the client connects to /var/run/docker.sock.
-    base_url = tcp://555.55.55.55:5555
+    # Path to the Docker daemon to connect to. Can point to either a tcp URL or a unix socket. If missing, the client connects to /var/run/docker.sock.
+    # base_url = tcp://555.55.55.55:5555 *.
 
-    ;Docker API version used on the server. If missing, the latest version is used.
-    version = 1.10
+    # Docker API version used on the server. If missing, the latest version is used.
+    # version = 1.10
 
-    ;Path to the Dockerfile used to build an image if it doesn't exist. If missing, current directory is used.
-    path_to_dockerfile = docker/files
+    # Path to the Dockerfile used to build an image if it doesn't exist. If missing, current directory is used.
+    # path_to_dockerfile = docker/files
 
-    ;Memory limit in MB.
-    memory_limit = 10
+    # Memory limit in MB.
+    # memory_limit = 10
 
-    ;CPU share in per cent.
-    cpu_share = 5
+    # CPU share in per cent.
+    # cpu_share = 5
 
 All config params are optional.
 '''
@@ -27,7 +29,7 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
-__version__ = '1.0.8'
+__version__ = '1.0.9'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -36,12 +38,12 @@ __license__ = 'MIT'
 from docker import Client
 
 
-def extend(cls):
+def extend(cls, extension):
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
 
-            self._docker_config = self.config['docker_exec']
+            self._docker_config = self.config['extensions'][extension]
 
             self._docker_client = Client(
                 self._docker_config.get('base_url'),
