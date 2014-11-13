@@ -2,11 +2,14 @@
 
 Config params::
 
-    [openvz_exec]
-    ;Container name.
+    # Use the sloth-ci.ext.openvz_exec module.
+    module: openvz_exec
+
+    # Container name.
     container_name = foo
-    ;Container ID.
-    container_id = 123
+        
+    # Container ID.
+    # container_id = 123
 
 If name is provided, ID is ignored. If name is not provided, ID is mandatory.
 '''
@@ -14,18 +17,18 @@ If name is provided, ID is ignored. If name is not provided, ID is mandatory.
 
 __title__ = 'sloth-ci.ext.openvz_exec'
 __description__ = 'OpenVZ executor app extension for Sloth CI'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
-def extend(cls):
+def extend(cls, extension):
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
 
-            self._openvz_config = self.config['openvz_exec']
+            self._openvz_config = self.config['extensions'][extension]
 
         def execute(self, action):
             '''Execute an action inside an OpenVZ container. The container must exist and be running.
