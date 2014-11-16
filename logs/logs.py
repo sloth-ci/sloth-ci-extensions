@@ -2,7 +2,7 @@
 
 Extension params::
     
-    # Use the module sloth-ci.ext.logs
+    # Use the module sloth-ci.ext.logs.
     module: logs
 
     # Set the log path. Default is the current dir.
@@ -11,8 +11,11 @@ Extension params::
     # Log filename. If not given, slug of the app's listen point will be used.
     filename: test_debug.log
 
-    # Log level (number or valid Python logging level string)
+    # Log level (number or valid Python logging level name).
     level: DEBUG
+
+    # Log format (refer to the Python logging module documentation). The default value is given below. 
+    # format: '%(asctime)s | %(name)30s | %(levelname)10s | %(message)s'
 
     # Make logs rotating. Default is false.
     # rotating: true
