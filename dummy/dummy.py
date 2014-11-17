@@ -2,19 +2,21 @@
 
 Config params::
 
-    [dummy]
-    ;Some param. If missing, "baz" is used.
-    foo = bar
+    # Use the module sloth-ci.ext.dummy.
+    module: dummy
+        
+    # Some param. If missing, "baz" is used.
+    foo: bar
 
-All config params are optional.
+The param is optional.
 
-This extension can be used as a reference when creating *real* extensions.
+.. hint:: This extension can be used as a reference when creating *real* extensions.
 
-Sloth app extensions extend the base Sloth class. An extension can override default methods and attributes, as well as add its own. Extensions have access to the app config. The convention is to keep all extension-related settings in the section of the same name, e.g. [dummy].
+Sloth app extensions extend the base Sloth class. An extension can override default methods and attributes, as well as add its own. Extensions have access to the app config.
 
-Extensions are declared in the [extensions] section in the Sloth app config and are plugged in in the order they are declared.
+Extensions are declared in the ``extensions`` section in the Sloth app config and are plugged in in the order they are declared.
 
-An extension is a module containing a single function ``extend(cls)``, which in turn declares a new class called by convention Sloth. It inherits from ``cls``. Its minimal ``__init__`` method must initialize the parent class instance.
+An extension is a module containing a single function ``extend(cls, extension)``, which in turn declares a new class called by convention ``Sloth``. It inherits from ``cls``. Its minimal ``__init__`` method must initialize the parent class instance.
 
 Methods of the Sloth class will replace the methods of the same name in the original sloth_ci.sloth.Sloth class.
 '''

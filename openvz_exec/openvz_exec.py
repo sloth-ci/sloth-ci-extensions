@@ -6,10 +6,10 @@ Config params::
     module: openvz_exec
 
     # Container name.
-    container_name = foo
+    container_name: foo
         
     # Container ID.
-    # container_id = 123
+    # container_id: 123
 
 If name is provided, ID is ignored. If name is not provided, ID is mandatory.
 '''
