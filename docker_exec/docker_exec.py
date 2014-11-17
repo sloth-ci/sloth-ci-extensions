@@ -6,22 +6,22 @@ Config params::
     module: docker_exec
         
     # Image name. If missing, the Sloth app name is used.
-    # image = foo
+    # image: foo
 
     # Path to the Docker daemon to connect to. Can point to either a tcp URL or a unix socket. If missing, the client connects to /var/run/docker.sock.
-    # base_url = tcp://555.55.55.55:5555 *.
+    # base_url: tcp://555.55.55.55:5555 *.
 
     # Docker API version used on the server. If missing, the latest version is used.
-    # version = 1.10
+    # version: 1.10
 
     # Path to the Dockerfile used to build an image if it doesn't exist. If missing, current directory is used.
-    # path_to_dockerfile = docker/files
+    # path_to_dockerfile: docker/files
 
     # Memory limit in MB.
-    # memory_limit = 10
+    # memory_limit: 10
 
     # CPU share in per cent.
-    # cpu_share = 5
+    # cpu_share: 5
 
 All config params are optional.
 '''
@@ -35,10 +35,9 @@ __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
-from docker import Client
-
-
 def extend(cls, extension):
+    from docker import Client
+    
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)

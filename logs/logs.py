@@ -36,14 +36,13 @@ __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
-from os.path import abspath, join, exists
-from os import makedirs
-
-import logging
-import logging.handlers
-
-
 def extend(cls, extension):
+    from os.path import abspath, join, exists
+    from os import makedirs
+
+    import logging
+    import logging.handlers
+
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)

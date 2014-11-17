@@ -29,10 +29,9 @@ __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
-from paramiko import SSHClient
-
-
 def extend(cls, extension):
+    from paramiko import SSHClient
+    
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
