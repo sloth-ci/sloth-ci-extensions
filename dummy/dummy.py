@@ -14,7 +14,7 @@ The param is optional.
 
 Sloth app extensions extend the base Sloth class. An extension can override default methods and attributes, as well as add its own. Extensions have access to the app config.
 
-Extensions are declared in the ``extensions`` section in the Sloth app config and are plugged in in the order they are declared.
+Extensions are declared in the ``extensions`` section in the Sloth app config.
 
 An extension is a module containing a single function ``extend(cls, extension)``, which in turn declares a new class called by convention ``Sloth``. It inherits from ``cls``. Its minimal ``__init__`` method must initialize the parent class instance.
 
