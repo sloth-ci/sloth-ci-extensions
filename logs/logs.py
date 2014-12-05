@@ -30,7 +30,7 @@ Extension params::
 
 __title__ = 'sloth-ci.ext.logs'
 __description__ = 'Logs for Sloth CI apps'
-__version__ = '1.0.6'
+__version__ = '1.0.7'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -66,6 +66,7 @@ def extend(cls, extension):
                     maxBytes=log_config.get('max_bytes') or 0,
                     backupCount=log_config.get('backup_count') or 0
                 )
+
             else:
                 file_handler = logging.FileHandler(abspath(join(log_dir, log_filename)), 'a+')
 
@@ -73,9 +74,6 @@ def extend(cls, extension):
 
             file_handler.setLevel(log_config.get('level', logging.INFO))
             
-            if file_handler.level < self.logger.level:
-                self.logger.setLevel(file_handler.level)
-
             self.logger.addHandler(file_handler)
 
             self.log_handlers[extension] = file_handler
@@ -83,6 +81,6 @@ def extend(cls, extension):
         def stop(self):
             super().stop()
             self.logger.removeHandler(self.log_handlers.pop(extension))
-            
+
 
     return Sloth
