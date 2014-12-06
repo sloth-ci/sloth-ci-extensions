@@ -17,7 +17,7 @@ If name is provided, ID is ignored. If name is not provided, ID is mandatory.
 
 __title__ = 'sloth-ci.ext.openvz_exec'
 __description__ = 'OpenVZ executor app extension for Sloth CI'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -28,7 +28,7 @@ def extend(cls, extension):
         def __init__(self, config):
             super().__init__(config)
 
-            self._openvz_config = self.config['extensions'][extension]
+            self._openvz_config = extension['config']
 
         def execute(self, action):
             '''Execute an action inside an OpenVZ container. The container must exist and be running.
