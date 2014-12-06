@@ -23,7 +23,7 @@ Username, password, and keys params are optional.
 
 __title__ = 'sloth-ci.ext.ssh_exec'
 __description__ = 'SSH executor extension for Sloth CI'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -36,7 +36,7 @@ def extend(cls, extension):
         def __init__(self, config):
             super().__init__(config)
 
-            self._ssh_config = self.config['extensions'][extension]
+            self._ssh_config = extensions['config']
 
             self._ssh_client = SSHClient()
 
