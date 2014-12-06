@@ -29,7 +29,7 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
-__version__ = '1.0.9'
+__version__ = '1.1.0'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -42,7 +42,7 @@ def extend(cls, extension):
         def __init__(self, config):
             super().__init__(config)
 
-            self._docker_config = self.config['extensions'][extension]
+            self._docker_config = extension['config']
 
             self._docker_client = Client(
                 self._docker_config.get('base_url'),
