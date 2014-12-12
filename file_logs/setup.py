@@ -1,6 +1,6 @@
 ﻿from setuptools import setup
 
-import logs as ext
+import file_logs as ext
 
 
 package = 'sloth_ci.ext'

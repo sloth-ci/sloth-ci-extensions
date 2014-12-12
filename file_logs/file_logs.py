@@ -1,9 +1,11 @@
-'''Sloth CI extension that adds a logger (can be rotating and timed rotating) to Sloth CI apps.
+'''Sloth CI extension that adds a file logger (can be rotating and timed rotating) to Sloth CI apps.
+
+Formerly known as "sloth-ci.ext.logs."
 
 Extension params::
     
-    # Use the module sloth-ci.ext.logs.
-    module: logs
+    # Use the module sloth-ci.ext.file-logs.
+    module: file_logs
 
     # Set the log path. Default is the current dir.
     path: debug_logs
@@ -28,8 +30,8 @@ Extension params::
 '''
 
 
-__title__ = 'sloth-ci.ext.logs'
-__description__ = 'Logs for Sloth CI apps'
+__title__ = 'sloth-ci.ext.file_logs'
+__description__ = 'File logs for Sloth CI apps'
 __version__ = '1.0.8'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
