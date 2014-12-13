@@ -2,7 +2,7 @@
 
 .. warning::
 
-    This etension uses the default Python SMTPHandler from logging.handlers. SMTPHandler doesn't work with GMail's SMTP because it creates an smtplib.SMTP object to connect to the host, whereas GMail requires smtplib.SMTP_SSL.
+    This extension uses the default Python SMTPHandler from logging.handlers. SMTPHandler doesn't work with GMail's SMTP because it creates an smtplib.SMTP object to connect to the host, whereas GMail requires smtplib.SMTP_SSL.
 
     Outlook.com is approved to work fine.
 
@@ -17,7 +17,8 @@ Extension params::
         - admin@example.com
     
     # Log level (number or valid Python logging level name).
-    # CRITICAL includes only build fails, WARNING adds partial completions, INFO adds completion, and DEBUG adds trigger notifications.
+    # CRITICAL includes only build fails, WARNING adds partial completions,
+    # INFO adds completion, and DEBUG adds trigger notifications.
     # Default is WARNING.
     level: INFO
 
