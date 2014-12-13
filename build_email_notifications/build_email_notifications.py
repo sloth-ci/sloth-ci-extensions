@@ -8,8 +8,8 @@
 
 Extension params::
     
-    # Use the module sloth-ci.ext.build_notifications.
-    module: build_notifications
+    # Use the module sloth-ci.ext.build_email_notifications.
+    module: build_email_notifications
 
     # Emails to send the notifications to.
     emails:
@@ -61,7 +61,7 @@ Extension params::
 '''
 
 
-__title__ = 'sloth-ci.ext.build_notifications'
+__title__ = 'sloth-ci.ext.build_email_notifications'
 __description__ = 'Build email notifications for Sloth CI apps'
 __version__ = '1.0.0'
 __author__ = 'Konstantin Molchanov'
@@ -78,9 +78,9 @@ def extend(cls, extension):
         def __init__(self, config):
             super().__init__(config)
             
-            build_emails_config = extension['config']
+            build_email_config = extension['config']
             
-            split_mail_host = build_emails_config['mail_host'].split(':')
+            split_mail_host = build_email_config['mail_host'].split(':')
 
             if len(split_mail_host) == 2:
                 mail_host = (split_mail_host[0], split_mail_host[1])
@@ -88,19 +88,19 @@ def extend(cls, extension):
             else:
                 mail_host = split_mail_host[0]
             
-            from_addr = build_emails_config.get('from', 'build@sloth.ci')
+            from_addr = build_email_config.get('from', 'build@sloth.ci')
 
-            to_addrs = build_emails_config.get('emails', [])
+            to_addrs = build_email_config.get('emails', [])
 
-            smtp_login = build_emails_config.get('login')
+            smtp_login = build_email_config.get('login')
 
             if smtp_login:
-                credentials = (smtp_login, build_emails_config['password'])
+                credentials = (smtp_login, build_email_config['password'])
             
             else:
                 credentials = None
 
-            secure = build_emails_config.get('secure')
+            secure = build_email_config.get('secure')
 
             if secure == True:
                 secure = ()
@@ -112,10 +112,10 @@ def extend(cls, extension):
                 secure = None
 
             self._subjects = {
-                'triggered': build_emails_config.get('subject_triggered', '{listen_point}: Build Triggered'),
-                'completed': build_emails_config.get('subject_completed', '{listen_point}: Build Completed'),
-                'partially_completed': build_emails_config.get('subject_partially_completed', '{listen_point}: Build Partially Completed'),
-                'failed': build_emails_config.get('subject_failed', '{listen_point}: Build Failed')
+                'triggered': build_email_config.get('subject_triggered', '{listen_point}: Build Triggered'),
+                'completed': build_email_config.get('subject_completed', '{listen_point}: Build Completed'),
+                'partially_completed': build_email_config.get('subject_partially_completed', '{listen_point}: Build Partially Completed'),
+                'failed': build_email_config.get('subject_failed', '{listen_point}: Build Failed')
             }
             
             smtp_handler = SMTPHandler(
@@ -129,7 +129,7 @@ def extend(cls, extension):
 
             smtp_handler.getSubject = self._get_email_subject
             
-            smtp_handler.setLevel(build_emails_config.get('level', logging.CRITICAL))
+            smtp_handler.setLevel(build_email_config.get('level', logging.CRITICAL))
             
             self.build_logger.addHandler(smtp_handler)
 
