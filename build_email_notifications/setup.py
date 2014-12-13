@@ -1,6 +1,6 @@
 ﻿from setuptools import setup
 
-import build_notifications as ext
+import build_email_notifications as ext
 
 
 package = 'sloth_ci.ext'
