@@ -11,7 +11,7 @@ extensions:
 
         # Set the log path. Default is the current dir.
         path: debug_logs
-    
+
         # Log filename. If not given, slug of the app's listen point will be used.
         filename: test_debug.log
 
