@@ -58,7 +58,7 @@ def extend(cls, extension):
                     self._ssh_client.load_host_keys(key)
 
             if self._ssh_config.get('auto_add_unknown_hosts'):
-                self._ssh_client.set_missing_host_key_policy(AutoAddPolicy)
+                self._ssh_client.set_missing_host_key_policy(AutoAddPolicy())
 
         def execute(self, action):
             '''Execute an action on a remote host (or hosts).
