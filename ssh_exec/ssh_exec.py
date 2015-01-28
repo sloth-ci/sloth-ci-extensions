@@ -27,7 +27,7 @@ Username, password, and keys params are optional.
 
 __title__ = 'sloth-ci.ext.ssh_exec'
 __description__ = 'SSH executor extension for Sloth CI'
-__version__ = '1.0.6'
+__version__ = '1.0.7'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -35,7 +35,9 @@ __license__ = 'MIT'
 
 def extend(cls, extension):
     from paramiko import SSHClient
-    
+    from paramiko.client import AutoAddPolicy
+
+
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
@@ -77,6 +79,9 @@ def extend(cls, extension):
 
                     username = self._ssh_config.get('username')
                     password = self._ssh_config.get('password')
+
+                    if self._ssh_config.get('auto_add_unknown_hosts'):
+                        self._ssh_client.set_missing_host_key_policy(AutoAddPolicy)
 
                     self.exec_logger.debug('Connecting to %s:%d with username %s)' % (hostname, port, username))
 
