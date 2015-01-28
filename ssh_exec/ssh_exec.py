@@ -27,7 +27,7 @@ Username, password, and keys params are optional.
 
 __title__ = 'sloth-ci.ext.ssh_exec'
 __description__ = 'SSH executor extension for Sloth CI'
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -63,7 +63,7 @@ def extend(cls, extension):
             :returns: True if successful, Exception otherwise
             '''
 
-            self.processing_logger.info('Executing action: %s', action)
+            self.exec_logger.info('Executing action: %s', action)
             
             for host in (self._ssh_config.get('hosts'),):
                 try:
@@ -78,7 +78,7 @@ def extend(cls, extension):
                     username = self._ssh_config.get('username')
                     password = self._ssh_config.get('password')
 
-                    self.processing_logger.debug('Connecting to %s:%d with username %s)' % (hostname, port, username))
+                    self.exec_logger.debug('Connecting to %s:%d with username %s)' % (hostname, port, username))
 
                     self._ssh_client.connect(
                         hostname=hostname,
@@ -90,12 +90,12 @@ def extend(cls, extension):
                     stdin, stdout, stderr = self._ssh_client.exec_command(action)
 
                     for out in stdout:
-                        self.processing_logger.debug('%s', out)
+                        self.exec_logger.debug('%s', out)
 
                     for err in stderr:
-                        self.processing_logger.debug('%s', err)
+                        self.exec_logger.debug('%s', err)
 
-                    self.processing_logger.info('Action executed: %s', action)
+                    self.exec_logger.info('Action executed: %s', action)
                     return True
 
                 except Exception:
