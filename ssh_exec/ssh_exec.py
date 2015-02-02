@@ -97,12 +97,12 @@ def extend(cls, extension):
                     stdin, stdout, stderr = self._ssh_client.exec_command(action)
 
                     for out in stdout:
-                        self.exec_logger.debug('%s', out)
+                        self.exec_logger.debug('%s' % out)
 
                     for err in stderr:
-                        self.exec_logger.debug('%s', err)
+                        self.exec_logger.debug('%s' % err)
 
-                    self.exec_logger.info('Action executed: %s', action)
+                    self.exec_logger.info('Action executed: %s' % action)
                     return True
 
                 except Exception:
