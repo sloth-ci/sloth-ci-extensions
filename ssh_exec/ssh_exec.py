@@ -27,7 +27,7 @@ Username, password, and keys params are optional.
 
 __title__ = 'sloth-ci.ext.ssh_exec'
 __description__ = 'SSH executor extension for Sloth CI'
-__version__ = '1.0.7'
+__version__ = '1.0.8'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -70,8 +70,6 @@ def extend(cls, extension):
             :returns: True if successful, Exception otherwise
             '''
 
-            self.exec_logger.info('Executing action: %s' % action)
-            
             for host in self._ssh_config.get('hosts'):
                 try:
                     split_host = host.split(':')
