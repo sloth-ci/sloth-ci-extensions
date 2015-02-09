@@ -17,7 +17,7 @@ Extension params::
         - admin@example.com
     
     # Log level (number or valid Python logging level name).
-    # CRITICAL includes only build fails, WARNING adds partial completions,
+    # ERROR includes only build fails, WARNING adds partial completions,
     # INFO adds completion, and DEBUG adds trigger notifications.
     # Default is WARNING.
     level: INFO
@@ -64,7 +64,7 @@ Extension params::
 
 __title__ = 'sloth-ci.ext.build_email_notifications'
 __description__ = 'Build email notifications for Sloth CI apps'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -130,7 +130,7 @@ def extend(cls, extension):
 
             smtp_handler.getSubject = self._get_email_subject
             
-            smtp_handler.setLevel(build_email_config.get('level', logging.CRITICAL))
+            smtp_handler.setLevel(build_email_config.get('level', logging.WARNING))
             
             self.build_logger.addHandler(smtp_handler)
 
@@ -152,7 +152,7 @@ def extend(cls, extension):
             elif record.levelname == 'WARNING':
                 return self._subjects['partially_completed'].format(listen_point=self.name)
 
-            elif record.levelname == 'CRITICAL':
+            elif record.levelname == 'ERROR':
                 return self._subjects['failed'].format(listen_point=self.name)
 
 
