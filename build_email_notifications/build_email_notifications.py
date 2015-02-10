@@ -64,7 +64,7 @@ Extension params::
 
 __title__ = 'sloth-ci.ext.build_email_notifications'
 __description__ = 'Build email notifications for Sloth CI apps'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -145,16 +145,16 @@ def extend(cls, extension):
 
             if record.levelname == 'INFO':
                 if 'triggered' in record.getMessage():
-                    return self._subjects['triggered'].format(listen_point=self.name)
+                    return self._subjects['triggered'].format(listen_point=self.listen_point)
 
                 else:
-                    return self._subjects['completed'].format(listen_point=self.name)
+                    return self._subjects['completed'].format(listen_point=self.listen_point)
         
             elif record.levelname == 'WARNING':
-                return self._subjects['partially_completed'].format(listen_point=self.name)
+                return self._subjects['partially_completed'].format(listen_point=self.listen_point)
 
             elif record.levelname == 'ERROR':
-                return self._subjects['failed'].format(listen_point=self.name)
+                return self._subjects['failed'].format(listen_point=self.listen_point)
 
 
     return Sloth
