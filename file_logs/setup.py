@@ -16,7 +16,8 @@ setup(
     py_modules=['%s.%s' % (package, ext.__name__)],
     package_dir={package: '.'},
     install_requires = [
-        'sloth_ci>=1.0.9'
+        'sloth_ci>=1.2.3',
+        'awesome-slugify'
     ],
     license='MIT',
     classifiers=[
