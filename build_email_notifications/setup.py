@@ -16,7 +16,7 @@ setup(
     py_modules=['%s.%s' % (package, ext.__name__)],
     package_dir={package: '.'},
     install_requires = [
-        'sloth_ci>=1.2.1'
+        'sloth_ci>=1.2.3'
     ],
     license='MIT',
     classifiers=[
