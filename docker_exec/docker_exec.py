@@ -5,7 +5,7 @@ Config params::
     # Use the module sloth-ci.ext.docker_exec.
     module: docker_exec
         
-    # Image name. If missing, the Sloth app name is used.
+    # Image name. If missing, slug of the Sloth app listen point is used.
     # image: foo
 
     # Path to the Docker daemon to connect to. Can point to either a tcp URL or a unix socket. If missing, the client connects to /var/run/docker.sock.
@@ -29,7 +29,7 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
-__version__ = '1.1.0'
+__version__ = '1.1.1'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -37,7 +37,10 @@ __license__ = 'MIT'
 
 def extend(cls, extension):
     from docker import Client
-    
+
+    from slugify import slugify
+
+
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
@@ -51,7 +54,7 @@ def extend(cls, extension):
 
             self._docker_client._version = str(self._docker_config.get('version') or self._docker_client._version)
 
-            self._docker_image = self._docker_config.get('image') or self.name
+            self._docker_image = self._docker_config.get('image') or slugify(self.listen_point)
 
         def execute(self, action):
             '''Execute an action inside a container, then commit the changes to the image and remove the container.

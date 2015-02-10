@@ -16,8 +16,9 @@ setup(
     py_modules=['%s.%s' % (package, ext.__name__)],
     package_dir={package: '.'},
     install_requires = [
-        'sloth_ci>=1.0.9',
-        'docker-py'
+        'sloth_ci>=1.2.3',
+        'docker-py',
+        'awesome-slugify'
     ],
     license='MIT',
     classifiers=[
