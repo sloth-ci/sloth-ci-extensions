@@ -32,7 +32,7 @@ Extension params::
 
 __title__ = 'sloth-ci.ext.file_logs'
 __description__ = 'File logs for Sloth CI apps'
-__version__ = '1.0.8'
+__version__ = '1.0.9'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -45,6 +45,9 @@ def extend(cls, extension):
     import logging
     import logging.handlers
 
+    from slugify import slugify
+
+
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
@@ -52,7 +55,7 @@ def extend(cls, extension):
             log_config = extension['config']
             
             log_dir = log_config.get('path', '.')
-            log_filename = log_config.get('filename', self.name + '.log')
+            log_filename = log_config.get('filename', slugify(self.listen_point) + '.log')
 
             if not exists(abspath(log_dir)):
                 makedirs(abspath(log_dir))
