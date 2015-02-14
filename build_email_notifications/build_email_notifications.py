@@ -64,7 +64,7 @@ Extension params::
 
 __title__ = 'sloth-ci.ext.build_email_notifications'
 __description__ = 'Build email notifications for Sloth CI apps'
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -144,7 +144,7 @@ def extend(cls, extension):
             '''Get a subject based on record level.'''
 
             if record.levelname == 'INFO':
-                if 'triggered' in record.getMessage():
+                if 'Triggered' in record.getMessage():
                     return self._subjects['triggered'].format(listen_point=self.listen_point)
 
                 else:
