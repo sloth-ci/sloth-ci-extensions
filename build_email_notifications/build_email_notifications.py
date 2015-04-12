@@ -64,14 +64,14 @@ Extension params::
 
 __title__ = 'sloth-ci.ext.build_email_notifications'
 __description__ = 'Build email notifications for Sloth CI apps'
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
 def extend(cls, extension):
-    import logging
+    from logging import WARNING
     from logging.handlers import SMTPHandler
 
 
@@ -130,7 +130,7 @@ def extend(cls, extension):
 
             smtp_handler.getSubject = self._get_email_subject
             
-            smtp_handler.setLevel(build_email_config.get('level', logging.WARNING))
+            smtp_handler.setLevel(build_email_config.get('level', WARNING))
             
             self.build_logger.addHandler(smtp_handler)
 
