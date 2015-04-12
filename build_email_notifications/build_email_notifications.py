@@ -141,7 +141,7 @@ def extend(cls, extension):
             self.build_logger.removeHandler(self.log_handlers.pop(extension['name']))
 
         def _get_email_subject(self, record):
-            '''Get a subject based on record level.'''
+            '''Get a subject based on record level and message.'''
 
             if record.levelname == 'INFO':
                 if 'Triggered' in record.getMessage():
