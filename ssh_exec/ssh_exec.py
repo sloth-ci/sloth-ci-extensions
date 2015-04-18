@@ -1,6 +1,6 @@
 ﻿'''SSH executor for Sloth CI app extension that replaces the default executor and runs actions on a remote host (or multiple hosts) via SSH.
 
-Config params::
+Extension params::
 
     # Use the sloth-ci.ext.ssh_exec module.
     module: ssh_exec

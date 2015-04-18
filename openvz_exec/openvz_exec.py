@@ -1,6 +1,6 @@
 ﻿'''OpenVZ executor for Sloth CI app extension that replaces the default executor and runs actions inside a given OpenVZ container.
 
-Config params::
+Extension params::
 
     # Use the sloth-ci.ext.openvz_exec module.
     module: openvz_exec

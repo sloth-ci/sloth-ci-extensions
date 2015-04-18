@@ -1,6 +1,6 @@
 '''Dummy Sloth CI app extension that replaces the default executor.
 
-Config params::
+Extension params::
 
     # Use the module sloth-ci.ext.dummy.
     module: dummy
