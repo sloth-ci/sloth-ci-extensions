@@ -54,7 +54,7 @@ Extension params::
 
     # If the SMTP server requires TLS, set this to true. Default is false.
     # If necessary, you can provide a keyfile name or a keyfile and a certificate file names.
-    # This param is used only the login and password params are supplied.
+    # This param is used only if the login and password params are supplied.
     secure: true
     # secure:
     #    -   keyfile
