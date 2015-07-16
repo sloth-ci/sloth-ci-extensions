@@ -4,7 +4,7 @@ Extension params::
 
     # Use the module sloth-ci.ext.dummy.
     module: dummy
-        
+
     # Some param. If missing, "baz" is used.
     foo: bar
 
@@ -42,5 +42,5 @@ def extend(cls, extension):
         def execute(self, action):
             print('Hello from a dummy executor that ignores the action and just does nothing.')
             print('Here is a config value extracted from the [dummy] section: foo = %s' % self.foo)
-    
+
     return Sloth

@@ -7,7 +7,7 @@ Extension params::
 
     # Container name.
     container_name: foo
-        
+
     # Container ID.
     # container_id: 123
 
@@ -46,7 +46,7 @@ def extend(cls, extension):
 
                 else:
                     container_id = self._openvz_config['container_id']
-                    
+
                     openvz_exec_command = 'vzctl exec %d' % container_id
 
                 super().execute(openvz_exec_command + ' ' + action)

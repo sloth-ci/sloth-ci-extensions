@@ -7,7 +7,7 @@
     Outlook.com is approved to work fine.
 
 Extension params::
-    
+
     # Use the module sloth-ci.ext.build_email_notifications.
     module: build_email_notifications
 
@@ -15,7 +15,7 @@ Extension params::
     emails:
         - foo@bar.com
         - admin@example.com
-    
+
     # Log level (number or valid Python logging level name).
     # ERROR includes only build fails, WARNING adds partial completions,
     # INFO adds completion, and DEBUG adds trigger notifications.
@@ -45,7 +45,7 @@ Extension params::
     # SMTP mail host and (if not default) port.
     # Mandatory parameter.
     mailhost: 'smtp-mail.outlook.com:25'
-    
+
     # SMTP login.
     login: foo@bar.baz
 
@@ -78,17 +78,17 @@ def extend(cls, extension):
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
-            
+
             build_email_config = extension['config']
-            
+
             split_mail_host = build_email_config['mail_host'].split(':')
 
             if len(split_mail_host) == 2:
                 mail_host = (split_mail_host[0], split_mail_host[1])
-            
+
             else:
                 mail_host = split_mail_host[0]
-            
+
             from_addr = build_email_config.get('from', 'build@sloth.ci')
 
             to_addrs = build_email_config.get('emails', [])
@@ -97,7 +97,7 @@ def extend(cls, extension):
 
             if smtp_login:
                 credentials = (smtp_login, build_email_config['password'])
-            
+
             else:
                 credentials = None
 
@@ -118,7 +118,7 @@ def extend(cls, extension):
                 'partially_completed': build_email_config.get('subject_partially_completed', '{listen_point}: Build Partially Completed'),
                 'failed': build_email_config.get('subject_failed', '{listen_point}: Build Failed')
             }
-            
+
             smtp_handler = SMTPHandler(
                 mailhost=mail_host,
                 fromaddr=from_addr,
@@ -129,9 +129,9 @@ def extend(cls, extension):
             )
 
             smtp_handler.getSubject = self._get_email_subject
-            
+
             smtp_handler.setLevel(build_email_config.get('level', WARNING))
-            
+
             self.build_logger.addHandler(smtp_handler)
 
             self.log_handlers[extension['name']] = smtp_handler
@@ -149,7 +149,7 @@ def extend(cls, extension):
 
                 else:
                     return self._subjects['completed'].format(listen_point=self.listen_point)
-        
+
             elif record.levelname == 'WARNING':
                 return self._subjects['partially_completed'].format(listen_point=self.listen_point)
 
