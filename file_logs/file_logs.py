@@ -3,13 +3,13 @@
 Formerly known as "sloth-ci.ext.logs."
 
 Extension params::
-    
+
     # Use the module sloth-ci.ext.file-logs.
     module: file_logs
 
     # Set the log path. Default is the current dir.
     path: debug_logs
-    
+
     # Log filename. If not given, slug of the app's listen point will be used.
     filename: test_debug.log
 
@@ -51,9 +51,9 @@ def extend(cls, extension):
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
-            
+
             log_config = extension['config']
-            
+
             log_dir = log_config.get('path', '.')
             log_filename = log_config.get('filename', slugify(self.listen_point) + '.log')
 
@@ -63,7 +63,7 @@ def extend(cls, extension):
             log_formatter = logging.Formatter(
                 log_config.get('format') or '%(asctime)s | %(name)30s | %(levelname)10s | %(message)s'
             )
-            
+
             if log_config.get('rotating'):
                 file_handler = logging.handlers.RotatingFileHandler(
                     abspath(join(log_dir, log_filename)),
@@ -78,7 +78,7 @@ def extend(cls, extension):
             file_handler.setFormatter(log_formatter)
 
             file_handler.setLevel(log_config.get('level', logging.INFO))
-            
+
             self.logger.addHandler(file_handler)
 
             self.log_handlers[extension['name']] = file_handler

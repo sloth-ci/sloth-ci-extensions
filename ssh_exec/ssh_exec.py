@@ -56,10 +56,10 @@ def extend(cls, extension):
 
                 for key in keys:
                     self._ssh_client.load_host_keys(key)
-            
+
             if self._ssh_config.get('auto_add_unknown_hosts'):
                 self.logger.debug('Automatically adding unknown hosts.')
-                
+
                 self._ssh_client.set_missing_host_key_policy(AutoAddPolicy())
 
         def execute(self, action):

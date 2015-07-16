@@ -1,7 +1,7 @@
 '''Sloth CI extension that sends POST requests on build events in Sloth CI apps.
 
 Extension params::
-    
+
     # Use the module sloth-ci.ext.webhooks.
     module: webhooks
 
@@ -31,10 +31,10 @@ from requests import post
 
 class POSTHandler(Handler):
     '''Log handler that sends a POST request to the specified URL.
-    
+
     :param url: URL to send the requests to.
     '''
-    
+
     def __init__(self, url):
         super().__init__()
 
@@ -62,13 +62,13 @@ def extend(cls, extension):
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
-            
+
             webhooks_config = extension['config']
-            
+
             webhooks_handler = POSTHandler(webhooks_config['url'])
 
             webhooks_handler.setLevel(webhooks_config.get('level', WARNING))
-            
+
             self.build_logger.addHandler(webhooks_handler)
 
             self.log_handlers[extension['name']] = webhooks_handler

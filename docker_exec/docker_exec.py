@@ -4,7 +4,7 @@ Extension params::
 
     # Use the module sloth-ci.ext.docker_exec.
     module: docker_exec
-        
+
     # Image name. If missing, slug of the Sloth app listen point is used.
     # image: foo
 
