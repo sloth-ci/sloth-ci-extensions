@@ -1,18 +1,23 @@
 syntax: glob
 
-bin
-build
-include
-lib
+*~
+*.db
+.kateproject*
 *.kdev4
 *.pyc
 *.log
 *.pyproj
-MANIFEST
-dist/
-test_server.conf
-docs/_build
-.kateproject*
-*~
+
 *.egg-info/*
+.pip
 _build
+bin
+build
+dist
+docs/_build
+env
+include
+lib
+logs
+
+MANIFEST
