@@ -1,4 +1,4 @@
-'''Sloth CI extension that adds an SMTP handler to the build logger in Sloth CI apps.
+﻿'''Sloth CI extension that adds an SMTP handler to the build logger in Sloth CI apps.
 
 .. warning::
 
@@ -8,7 +8,7 @@
 
 Extension params::
 
-    # Use the module sloth-ci.ext.build_email_notifications.
+    # Use the module sloth_ci.ext.build_email_notifications.
     module: build_email_notifications
 
     # Emails to send the notifications to.
@@ -64,7 +64,7 @@ Extension params::
 
 __title__ = 'sloth-ci.ext.build_email_notifications'
 __description__ = 'Build email notifications for Sloth CI apps'
-__version__ = '1.0.5'
+__version__ = '1.0.6'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'

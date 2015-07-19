@@ -2,7 +2,7 @@
 
 Extension params::
 
-    # Use the sloth-ci.ext.robots_txt module.
+    # Use the sloth_ci.ext.robots_txt module.
     module: robots_txt
 
     # Absolute path to the custom robots.txt file.

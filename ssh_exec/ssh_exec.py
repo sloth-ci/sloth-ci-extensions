@@ -2,7 +2,7 @@
 
 Extension params::
 
-    # Use the sloth-ci.ext.ssh_exec module.
+    # Use the sloth_ci.ext.ssh_exec module.
     module: ssh_exec
 
     # Hosts, comma-delimited. Optional port number can be provided after ':' (if not specified, 22 is used).
@@ -27,7 +27,7 @@ Username, password, and keys params are optional.
 
 __title__ = 'sloth-ci.ext.ssh_exec'
 __description__ = 'SSH executor extension for Sloth CI'
-__version__ = '1.0.8'
+__version__ = '1.0.9'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'

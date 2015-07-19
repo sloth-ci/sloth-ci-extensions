@@ -1,8 +1,8 @@
-'''Dummy Sloth CI app extension that replaces the default executor.
+﻿'''Dummy Sloth CI app extension that replaces the default executor.
 
 Extension params::
 
-    # Use the module sloth-ci.ext.dummy.
+    # Use the module sloth_ci.ext.dummy.
     module: dummy
 
     # Some param. If missing, "baz" is used.
@@ -24,7 +24,7 @@ Methods of the Sloth class will replace the methods of the same name in the orig
 
 __title__ = 'sloth-ci.ext.dummy'
 __description__ = 'Dummy app extension for Sloth CI'
-__version__ = '1.0.6'
+__version__ = '1.0.7'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'

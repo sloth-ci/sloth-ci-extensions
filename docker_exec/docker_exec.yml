@@ -6,7 +6,7 @@ provider:
 
 extensions:
     run_in_docker:
-        # Use the module sloth-ci.ext.docker_exec.
+        # Use the module sloth_ci.ext.docker_exec.
         module: docker_exec
         
         # Image name. If missing, slug of the Sloth app listen point is used.

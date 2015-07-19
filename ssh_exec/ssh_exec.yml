@@ -6,7 +6,7 @@ provider:
 
 extensions:
     run_via_ssh:
-        # Use the sloth-ci.ext.ssh_exec module.
+        # Use the sloth_ci.ext.ssh_exec module.
         module: ssh_exec
 
         # Hosts, comma-delimited. Optional port number can be provided after ':' (if not specified, 22 is used).

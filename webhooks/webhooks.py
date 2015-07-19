@@ -1,8 +1,8 @@
-'''Sloth CI extension that sends POST requests on build events in Sloth CI apps.
+﻿'''Sloth CI extension that sends POST requests on build events in Sloth CI apps.
 
 Extension params::
 
-    # Use the module sloth-ci.ext.webhooks.
+    # Use the module sloth_ci.ext.webhooks.
     module: webhooks
 
     # Log level (number or valid Python logging level name).

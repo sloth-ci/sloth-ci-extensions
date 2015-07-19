@@ -6,7 +6,7 @@ provider:
 
 extensions:
     debug_logs:
-        # Use the module sloth-ci.ext.file_logs.
+        # Use the module sloth_ci.ext.file_logs.
         module: file_logs
 
         # Set the log path. Default is the current dir.

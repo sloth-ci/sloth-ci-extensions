@@ -6,7 +6,7 @@ provider:
 
 extensions:
     webhooks:
-        # Use the module sloth-ci.ext.webhooks.
+        # Use the module sloth_ci.ext.webhooks.
         module: webhooks
         
         # Log level (number or valid Python logging level name).

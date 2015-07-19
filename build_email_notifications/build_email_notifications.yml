@@ -6,7 +6,7 @@ provider:
 
 extensions:
     build_error_notifications:
-        # Use the module sloth-ci.ext.build_email_notifications.
+        # Use the module sloth_ci.ext.build_email_notifications.
         module: build_email_notifications
 
         # Emails to send the notifications to.
