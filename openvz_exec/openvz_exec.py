@@ -2,7 +2,7 @@
 
 Extension params::
 
-    # Use the sloth-ci.ext.openvz_exec module.
+    # Use the sloth_ci.ext.openvz_exec module.
     module: openvz_exec
 
     # Container name.
@@ -17,7 +17,7 @@ If name is provided, ID is ignored. If name is not provided, ID is mandatory.
 
 __title__ = 'sloth-ci.ext.openvz_exec'
 __description__ = 'OpenVZ executor app extension for Sloth CI'
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'

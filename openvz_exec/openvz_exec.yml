@@ -7,7 +7,7 @@ provider:
 
 extensions:
     execute_in_openvz:
-        # Use the sloth-ci.ext.openvz_exec module.
+        # Use the sloth_ci.ext.openvz_exec module.
         module: openvz_exec
 
         # Container name.

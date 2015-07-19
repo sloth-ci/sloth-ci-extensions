@@ -2,7 +2,7 @@
 
 Extension params::
 
-    # Use the module sloth-ci.ext.docker_exec.
+    # Use the module sloth_ci.ext.docker_exec.
     module: docker_exec
 
     # Image name. If missing, slug of the Sloth app listen point is used.
@@ -29,7 +29,7 @@ All config params are optional.
 
 __title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
-__version__ = '1.1.1'
+__version__ = '1.1.2'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
