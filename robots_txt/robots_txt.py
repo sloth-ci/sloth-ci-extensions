@@ -19,7 +19,7 @@ File and path params are optional.
 
 __title__ = 'sloth-ci.ext.robots_txt'
 __description__ = 'robots.txt for Sloth CI'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'

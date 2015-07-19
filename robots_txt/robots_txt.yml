@@ -8,7 +8,7 @@ api_auth:
 paths:
     access_log: NUL
     error_log: NUL
-    db: NUL
+    db: false
 
 extensions:
     hide_from_robots:
