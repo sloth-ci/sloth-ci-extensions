@@ -18,7 +18,7 @@ Sloth app extensions extend the base Sloth class. An extension can override defa
 
 Extensions are declared in the ``extensions`` section in the Sloth app config.
 
-An extension is a module containing a single function ``extend(cls, extension)`` that declares the class ``Sloth``. It inherits from ``cls``. Its minimal ``__init__`` method calls its parent's ``__init__``.
+An extension is a module containing a single function ``extend(cls, extension)`` that returns the class ``Sloth``. It inherits from ``cls``. Its minimal ``__init__`` method calls its parent's ``__init__``.
 
 Methods of the Sloth class will replace the methods of the same name in the original sloth_ci.sloth.Sloth class.
 '''
@@ -26,7 +26,7 @@ Methods of the Sloth class will replace the methods of the same name in the orig
 
 __title__ = 'sloth-ci.ext.dummy_app'
 __description__ = 'Dummy app extension for Sloth CI'
-__version__ = '1.0.9'
+__version__ = '1.1.0'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
