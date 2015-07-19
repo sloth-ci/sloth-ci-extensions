@@ -6,8 +6,8 @@ provider:
 
 extensions:
     dummy:
-        # Use the module sloth_ci.ext.dummy.
-        module: dummy
+        # Use the module sloth_ci.ext.dummy_app.
+        module: dummy_app
         
         #Some param. If missing, "baz" is used.
         foo: bar

@@ -26,7 +26,7 @@ Methods of the Sloth class will replace the methods of the same name in the orig
 
 __title__ = 'sloth-ci.ext.dummy_app'
 __description__ = 'Dummy app extension for Sloth CI'
-__version__ = '1.0.8'
+__version__ = '1.0.9'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
