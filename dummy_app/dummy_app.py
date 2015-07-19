@@ -26,7 +26,7 @@ Methods of the Sloth class will replace the methods of the same name in the orig
 
 __title__ = 'sloth-ci.ext.dummy_app'
 __description__ = 'Dummy app extension for Sloth CI'
-__version__ = '1.1.0'
+__version__ = '1.1.1'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -43,6 +43,6 @@ def extend(cls, extension):
 
         def execute(self, action):
             print('Hello from a dummy executor that ignores the action and just does nothing.')
-            print('Here is a config value extracted from the [dummy] section: foo = %s' % self.foo)
+            print('Here is a config value extracted from the "dummy" section: foo = %s' % self.foo)
 
     return Sloth
