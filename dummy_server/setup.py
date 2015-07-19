@@ -17,7 +17,7 @@ setup(
     packages=[package],
     package_dir={package: '.'},
     install_requires = [
-        'sloth-ci>=1.2.8'
+        'sloth-ci>=1.3.0'
     ],
     license='MIT',
     classifiers=[
