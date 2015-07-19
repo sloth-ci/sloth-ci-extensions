@@ -1,30 +1,32 @@
 ﻿'''Dummy Sloth CI app extension that replaces the default executor.
 
+Formerly known as "sloth-ci.dummy."
+
 Extension params::
 
-    # Use the module sloth_ci.ext.dummy.
-    module: dummy
+    # Use the module sloth_ci.ext.dummy_app.
+    module: dummy_app
 
     # Some param. If missing, "baz" is used.
     foo: bar
 
-The param is optional.
+The ``foo`` param is optional.
 
-.. hint:: This extension can be used as a reference when creating *real* extensions.
+.. hint:: This extension can be used as a reference when creating *real* app extensions.
 
 Sloth app extensions extend the base Sloth class. An extension can override default methods and attributes, as well as add its own. Extensions have access to the app config.
 
 Extensions are declared in the ``extensions`` section in the Sloth app config.
 
-An extension is a module containing a single function ``extend(cls, extension)``, which in turn declares a new class called by convention ``Sloth``. It inherits from ``cls``. Its minimal ``__init__`` method must initialize the parent class instance.
+An extension is a module containing a single function ``extend(cls, extension)`` that declares the class ``Sloth``. It inherits from ``cls``. Its minimal ``__init__`` method calls its parent's ``__init__``.
 
 Methods of the Sloth class will replace the methods of the same name in the original sloth_ci.sloth.Sloth class.
 '''
 
 
-__title__ = 'sloth-ci.ext.dummy'
+__title__ = 'sloth-ci.ext.dummy_app'
 __description__ = 'Dummy app extension for Sloth CI'
-__version__ = '1.0.7'
+__version__ = '1.0.8'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
