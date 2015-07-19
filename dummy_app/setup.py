@@ -1,6 +1,6 @@
 ﻿from setuptools import setup
 
-import dummy as ext
+import dummy_app as ext
 
 
 package = 'sloth_ci.ext'
