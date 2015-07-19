@@ -1,4 +1,4 @@
-from setuptools import setup
+﻿from setuptools import setup
 
 import webhooks as ext
 
@@ -14,6 +14,7 @@ setup(
     author_email=ext.__author_email__,
     url='https://bitbucket.org/moigagoo/sloth-ci-extensions',
     py_modules=['%s.%s' % (package, ext.__name__)],
+    packages=[package],
     package_dir={package: '.'},
     install_requires = [
         'sloth-ci>=1.2.3'

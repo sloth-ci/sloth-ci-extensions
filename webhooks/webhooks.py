@@ -18,7 +18,7 @@ Extension params::
 
 __title__ = 'sloth-ci.ext.webhooks'
 __description__ = 'Webhooks for Sloth CI apps'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
