@@ -1,4 +1,4 @@
-﻿'''Dummy Sloth CI server extension that replaces the app creator.
+'''Dummy Sloth CI server extension that replaces the app creator.
 
 Extension params::
 
