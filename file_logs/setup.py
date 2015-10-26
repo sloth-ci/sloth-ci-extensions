@@ -17,8 +17,7 @@ setup(
     packages=[package],
     package_dir={package: '.'},
     install_requires = [
-        'sloth-ci>=1.2.3',
-        'awesome-slugify'
+        'sloth-ci>=2.0.0'
     ],
     license='MIT',
     classifiers=[
