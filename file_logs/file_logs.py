@@ -2,7 +2,16 @@
 
 You can customize your logging in a number of ways: set the output dir and filename, set log level and format, toggle and configure log rotation.
 
-Usage in the app config:
+Installation
+------------
+
+.. code-block:: bash
+    
+    $ pip install sloth-ci.ext.file_logs
+
+
+Usage
+-----
 
 .. code-block:: yaml
 
@@ -37,7 +46,7 @@ Usage in the app config:
 
 __title__ = 'sloth-ci.ext.file_logs'
 __description__ = 'File logs for Sloth CI apps'
-__version__ = '1.1.2'
+__version__ = '1.1.3'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
