@@ -1,29 +1,46 @@
-﻿'''OpenVZ executor for Sloth CI app extension that replaces the default executor and runs actions inside a given OpenVZ container.
+'''Run actions inside an `OpenVZ <http://openvz.org>`__ container.
 
-Extension params::
 
-    # Use the sloth_ci.ext.openvz_exec module.
-    module: openvz_exec
+Installation
+------------
 
-    # Container name.
-    container_name: foo
+.. code-block:: bash
 
-    # Container ID.
-    # container_id: 123
+    $ pip install sloth-ci.ext.openvz_exec
 
-If name is provided, ID is ignored. If name is not provided, ID is mandatory.
+
+Usage
+-----
+
+.. code-block:: yaml
+    :caption: openvz_exec.yml
+
+    extensions:
+        run_in_openvz:
+            # Use the sloth_ci.ext.openvz_exec module.
+            module: openvz_exec
+
+            # Container name.
+            container_name: foo
+
+            # Container ID.
+            # container_id: 123
+
+If ``container_name`` is provided, ``container_id`` is ignored. If ``container_name`` is *not* provided, ``container_id`` is mandatory.
 '''
 
 
 __title__ = 'sloth-ci.ext.openvz_exec'
-__description__ = 'OpenVZ executor app extension for Sloth CI'
-__version__ = '1.0.4'
+__description__ = 'OpenVZ executor for Sloth CI'
+__version__ = '1.0.5'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
-def extend(cls, extension):
+def extend_sloth(cls, extension):
+    '''Replace the default ``execute`` method with the OpenVZ-based one.'''
+
     class Sloth(cls):
         def __init__(self, config):
             super().__init__(config)
@@ -31,11 +48,11 @@ def extend(cls, extension):
             self._openvz_config = extension['config']
 
         def execute(self, action):
-            '''Execute an action inside an OpenVZ container. The container must exist and be running.
+            '''Execute an action inside an OpenVZ container. The container must exist and must be running.
 
             :param action: action to be executed
 
-            :returns: True if successful, Exception otherwise
+            :returns: True if the execution was successful; raises exception otherwise
             '''
 
             try:
@@ -55,5 +72,6 @@ def extend(cls, extension):
 
             except Exception:
                 raise
+
 
     return Sloth
