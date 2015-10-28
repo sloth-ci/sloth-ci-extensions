@@ -7,7 +7,7 @@ Installation
 ------------
 
 .. code-block:: bash
-    
+
     $ pip install sloth-ci.ext.docker_exec
 
 

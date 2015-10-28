@@ -15,7 +15,7 @@ Installation
 ------------
 
 .. code-block:: bash
-    
+
     $ pip install sloth-ci.ext.build_email_notifications
 
 
