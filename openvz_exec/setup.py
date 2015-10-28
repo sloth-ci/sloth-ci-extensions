@@ -1,4 +1,4 @@
-﻿from setuptools import setup
+from setuptools import setup
 
 import openvz_exec as ext
 
@@ -17,7 +17,7 @@ setup(
     packages=[package],
     package_dir={package: '.'},
     install_requires = [
-        'sloth-ci>=1.0.9',
+        'sloth-ci>=2.0.0',
     ],
     license='MIT',
     classifiers=[
