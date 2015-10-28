@@ -23,6 +23,7 @@ Usage
 -----
 
 .. code-block:: yaml
+    :caption: build_email_notifications.yml
 
     extensions:
         notifications:
