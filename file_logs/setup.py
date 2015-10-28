@@ -1,4 +1,4 @@
-﻿from setuptools import setup
+from setuptools import setup
 
 import file_logs as ext
 

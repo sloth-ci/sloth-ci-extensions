@@ -1,44 +1,51 @@
-'''Sloth CI extension that adds a file logger (can be rotating and timed rotating) to Sloth CI apps.
+﻿'''Add file logging to Sloth CI apps.
 
-Formerly known as "sloth-ci.ext.logs."
+You can customize your logging in a number of ways: set the output dir and filename, set log level and format, toggle and configure log rotation.
 
-Extension params::
+Usage in the app config:
 
-    # Use the module sloth_ci.ext.file_logs.
-    module: file_logs
+.. code-block:: yaml
 
-    # Set the log path. Default is the current dir.
-    path: debug_logs
+    extensions:
+        logs:
+            # Use the module sloth_ci.ext.file_logs.
+            module: file_logs
 
-    # Log filename. If not given, the app's listen point is used.
-    filename: test_debug.log
+            # Set the log path. Default is the current dir.
+            path: debug_logs
 
-    # Log level (number or valid Python logging level name).
-    level: DEBUG
+            # Log filename. If not given, the app's listen point is used.
+            filename: test_debug.log
 
-    # Log format (refer to the Python logging module documentation). The default value is given below. 
-    # format: '%(asctime)s | %(name)30s | %(levelname)10s | %(message)s'
+            # Log level (number or valid Python logging level name).
+            level: DEBUG
 
-    # Make logs rotating. Default is false.
-    # rotating: true
+            # Log format (refer to the https://docs.python.org/3/library/logging.html#logrecord-attributes).
+            # By default, this format is used: 
+            # format: '%(asctime)s | %(name)30s | %(levelname)10s | %(message)s'
 
-    # If rotating, maximum size of a log file in bytes.
-    # max_bytes: 500
+            # Make logs rotating. Default is false.
+            # rotating: true
 
-    # If rotating, maximum number or log files to keep.
-    # backup_count: 10
+            # If rotating, maximum size of a log file in bytes.
+            # max_bytes: 500
+
+            # If rotating, maximum number or log files to keep.
+            # backup_count: 10
 '''
 
 
 __title__ = 'sloth-ci.ext.file_logs'
 __description__ = 'File logs for Sloth CI apps'
-__version__ = '1.1.1'
+__version__ = '1.1.2'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
 def extend_sloth(cls, extension):
+    '''Add a file handler to the default logger when the app is created and remove it when the app stops.'''
+
     from os.path import abspath, join, exists
     from os import makedirs
 
@@ -48,6 +55,8 @@ def extend_sloth(cls, extension):
 
     class Sloth(cls):
         def __init__(self, config):
+            '''Add a file handler to the app logger.'''
+
             super().__init__(config)
 
             log_config = extension['config']
@@ -82,6 +91,8 @@ def extend_sloth(cls, extension):
             self.log_handlers[extension['name']] = file_handler
 
         def stop(self):
+            '''Remove the file handler when the app stops.'''
+
             super().stop()
             self.logger.removeHandler(self.log_handlers.pop(extension['name']))
 
