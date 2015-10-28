@@ -2,6 +2,7 @@
 
 You can customize your logging in a number of ways: set the output dir and filename, set log level and format, toggle and configure log rotation.
 
+
 Installation
 ------------
 

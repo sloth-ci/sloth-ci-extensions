@@ -2,6 +2,7 @@
 
 By default, Sloth CI apps run actions in a subprocess on the same machine they're running on. This extension overrides this and makes the app execute each action as a container inside a given Docker image.
 
+
 Installation
 ------------
 
@@ -42,7 +43,7 @@ Usage
 
 
 __title__ = 'sloth-ci.ext.docker_exec'
-__description__ = 'Docker executor app extension for Sloth CI'
+__description__ = 'Docker executor for Sloth CI'
 __version__ = '1.1.3'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
