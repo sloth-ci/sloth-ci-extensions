@@ -1,82 +1,104 @@
-﻿'''Sloth CI extension that adds an SMTP handler to the build logger in Sloth CI apps.
+﻿'''Send email notifications when builds complete or fail.
+
+Executing actions of an app is called *build*. A build is considered *completed* if all its actions were completed. If some actions were completed and some failed, it's a *partially completed*; if all actions fail, the build *failed*.
+
+This extension sends you emails via SMTP when your builds complete (fully or partially) or fail; just pick the desired notification level, list the recepient emails, and enter your SMTP credentials. Optionally, you can set the subject for each notifcation level.
 
 .. warning::
 
-    This extension uses the default Python SMTPHandler from logging.handlers. SMTPHandler doesn't work with GMail's SMTP because it creates an smtplib.SMTP object to connect to the host, whereas GMail requires smtplib.SMTP_SSL.
+    This extension uses `SMTPHandler <https://docs.python.org/3/library/logging.handlers.html#smtphandler>`__ from logging.handlers. SMTPHandler doesn't work with GMail because it creates an smtplib.SMTP object to connect to the host, whereas GMail requires smtplib.SMTP_SSL.
 
-    Outlook.com is approved to work fine.
+    Outlook.com works fine.
 
-Extension params::
 
-    # Use the module sloth_ci.ext.build_email_notifications.
-    module: build_email_notifications
+Installation
+------------
 
-    # Emails to send the notifications to.
-    emails:
-        - foo@bar.com
-        - admin@example.com
+.. code-block:: bash
+    
+    $ pip install sloth-ci.ext.build_email_notifications
 
-    # Log level (number or valid Python logging level name).
-    # ERROR includes only build fails, WARNING adds partial completions,
-    # INFO adds completion, and DEBUG adds trigger notifications.
-    # Default is WARNING.
-    level: INFO
 
-    # The "from" address in the emails. Default is "build@sloth.ci."
-    from: notify@example.com
+Usage
+-----
 
-    # The email subject on build trigger. You can use the {listen_point} placeholder.
-    # Default is "{listen_point}: Build Triggered."
-    subject_triggered: 'Triggered build on {listen_point}!'
+.. code-block:: yaml
 
-    # The email subject on build completion.You can use the {listen_point} placeholder.
-    # Default is "{listen_point}: Build Completed."
-    subject_completed: 'Hooray! {listen_point} works!'
+    extensions:
+        notifications:
+            # Use the module sloth_ci.ext.build_email_notifications.
+            module: build_email_notifications
 
-    # The email subject on build partial completion. You can use the {listen_point} placeholder.
-    # Default is "{listen_point}: Build Partially Completed."
-    subject_partially_completed: 'Better than nothing on {listen_point}'
+            # Emails to send the notifications to.
+            emails:
+                - foo@bar.com
+                - admin@example.com
 
-    # The email subject on build fail. You can use the {listen_point} placeholder.
-    # Default is "{listen_point}: Build Failed."
-    subject_failed: 'Fail on {listen_point}'
+            # Log level (number or valid Python logging level name).
+            # ERROR includes only build fails, WARNING adds partial completions,
+            # INFO adds completion, and DEBUG adds trigger notifications.
+            # Default is WARNING.
+            level: INFO
 
-    # SMTP settings.
-    # SMTP mail host and (if not default) port.
-    # Mandatory parameter.
-    mailhost: 'smtp-mail.outlook.com:25'
+            # The "from" address in the emails. Default is "build@sloth.ci."
+            from: notify@example.com
 
-    # SMTP login.
-    login: foo@bar.baz
+            # The email subject on build trigger. You can use the {listen_point} placeholder.
+            # Default is "{listen_point}: Build Triggered."
+            subject_triggered: 'Triggered build on {listen_point}!'
 
-    # SMTP password.
-    password: bar
+            # The email subject on build completion.You can use the {listen_point} placeholder.
+            # Default is "{listen_point}: Build Completed."
+            subject_completed: 'Hooray! {listen_point} works!'
 
-    # If the SMTP server requires TLS, set this to true. Default is false.
-    # If necessary, you can provide a keyfile name or a keyfile and a certificate file names.
-    # This param is used only if the login and password params are supplied.
-    secure: true
-    # secure:
-    #    -   keyfile
-    #    -   cerfile
+            # The email subject on build partial completion. You can use the {listen_point} placeholder.
+            # Default is "{listen_point}: Build Partially Completed."
+            subject_partially_completed: 'Better than nothing on {listen_point}'
+
+            # The email subject on build fail. You can use the {listen_point} placeholder.
+            # Default is "{listen_point}: Build Failed."
+            subject_failed: 'Fail on {listen_point}'
+
+            # SMTP settings.
+            # SMTP mail host and (if not default) port.
+            # Mandatory parameter.
+            mailhost: 'smtp-mail.outlook.com:25'
+
+            # SMTP login.
+            login: foo@bar.baz
+
+            # SMTP password.
+            password: bar
+
+            # If the SMTP server requires TLS, set this to true. Default is false.
+            # If necessary, you can provide a keyfile name or a keyfile and a certificate file names.
+            # This param is used only if the login and password params are supplied.
+            secure: true
+            # secure:
+            #    -   keyfile
+            #    -   cerfile
 '''
 
 
 __title__ = 'sloth-ci.ext.build_email_notifications'
-__description__ = 'Build email notifications for Sloth CI apps'
-__version__ = '1.0.6'
+__description__ = 'Email notifications for Sloth CI apps'
+__version__ = '1.0.7'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
-def extend(cls, extension):
+def extend_sloth(cls, extension):
+    '''Add an SMTP handler to the default logger when the app is created and remove it when the app stops.'''
+
     from logging import WARNING
     from logging.handlers import SMTPHandler
 
 
     class Sloth(cls):
         def __init__(self, config):
+            '''Add an SMTP handler to the app logger.'''
+
             super().__init__(config)
 
             build_email_config = extension['config']
@@ -137,6 +159,8 @@ def extend(cls, extension):
             self.log_handlers[extension['name']] = smtp_handler
 
         def stop(self):
+            '''Remove the SMTP handler when the app stops.'''
+
             super().stop()
             self.build_logger.removeHandler(self.log_handlers.pop(extension['name']))
 
