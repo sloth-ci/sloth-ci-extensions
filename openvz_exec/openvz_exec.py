@@ -1,4 +1,6 @@
-'''Run actions inside an `OpenVZ <http://openvz.org>`__ container.
+﻿'''Run actions inside an `OpenVZ <http://openvz.org>`__ container.
+
+By default, Sloth CI apps run actions in a subprocess on the same machine they're running on. This extension overrides this and makes the app execute actions inside a given OpenVZ container.
 
 
 Installation
