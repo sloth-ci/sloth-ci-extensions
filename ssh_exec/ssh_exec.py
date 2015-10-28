@@ -1,39 +1,58 @@
-﻿'''SSH executor for Sloth CI app extension that replaces the default executor and runs actions on a remote host (or multiple hosts) via SSH.
+'''Run actions on remote machines over SSH.
 
-Extension params::
+By default, Sloth CI apps run actions in a subprocess on the same machine they're running on. This extension overrides this and makes the app execute actions on remote machines over SSH.
 
-    # Use the sloth_ci.ext.ssh_exec module.
-    module: ssh_exec
+You can authenticate with login and password or by providing key files.
 
-    # Hosts, comma-delimited. Optional port number can be provided after ':' (if not specified, 22 is used).
-    hosts:
-        - ssh.example.com
-        - myserver.com:23
 
-    # Username to use for authentication.
-    username: admin
+Installation
+------------
 
-    # Password to use for authentication or to unlock a private key.
-    # password: foobar
+.. code-block:: bash
 
-    # Additional private key files. If not specified, only the keys from the default location are loaded (i.e. ~/.ssh).
-    # keys: 
-    #   - ~/my_ssh_keys/key_rsa
-    #   - somekey
+    $ pip install sloth-ci.ext.ssh_exec
 
-Username, password, and keys params are optional.
+
+Usage
+-----
+
+.. code-block:: yaml
+    :caption: ssh_exec.yml
+
+    extensions:
+        run_over_ssh:
+            # Use the sloth_ci.ext.ssh_exec module.
+            module: ssh_exec
+
+            # Hosts, comma-delimited. Optional port number can be provided after ':' (if not specified, 22 is used).
+            hosts:
+                - ssh.example.com
+                - myserver.com:23
+
+            # Username to use for authentication.
+            username: admin
+
+            # Password to use for authentication or to unlock a private key.
+            # password: foobar
+
+            # Additional private key files. If not specified, only the keys from the default location are loaded (i.e. ~/.ssh).
+            # keys: 
+            #   - ~/my_ssh_keys/key_rsa
+            #   - somekey
 '''
 
 
 __title__ = 'sloth-ci.ext.ssh_exec'
-__description__ = 'SSH executor extension for Sloth CI'
-__version__ = '1.0.9'
+__description__ = 'SSH executor for Sloth CI'
+__version__ = '1.1.0'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
-def extend(cls, extension):
+def extend_sloth(cls, extension):
+    '''Replace the default ``execute`` method with the SSH-based one.'''
+
     from paramiko import SSHClient
     from paramiko.client import AutoAddPolicy
 
@@ -63,11 +82,11 @@ def extend(cls, extension):
                 self._ssh_client.set_missing_host_key_policy(AutoAddPolicy())
 
         def execute(self, action):
-            '''Execute an action on a remote host (or hosts).
+            '''Execute an action on remote hosts.
 
             :param action: action to be executed
 
-            :returns: True if successful, Exception otherwise
+            :returns: True if the execution was successful; raises exception otherwise
             '''
 
             for host in self._ssh_config.get('hosts'):
@@ -105,5 +124,6 @@ def extend(cls, extension):
 
                 except Exception:
                     raise
+
 
     return Sloth
