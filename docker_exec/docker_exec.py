@@ -1,41 +1,57 @@
-﻿'''Docker executor for Sloth CI app extension that replaces the default executor and runs actions inside a given Docker image.
+﻿'''Run actions inside a `Docker <https://www.docker.com/>`__ image.
 
-Extension params::
+By default, Sloth CI apps run actions in a subprocess on the same machine they're running on. This extension overrides this and makes the app execute each action as a container inside a given Docker image.
 
-    # Use the module sloth_ci.ext.docker_exec.
-    module: docker_exec
+Installation
+------------
 
-    # Image name. If missing, slug of the Sloth app listen point is used.
-    # image: foo
+.. code-block:: bash
+    
+    $ pip install sloth-ci.ext.docker_exec
 
-    # Path to the Docker daemon to connect to. Can point to either a tcp URL or a unix socket. If missing, the client connects to /var/run/docker.sock.
-    # base_url: tcp://555.55.55.55:5555 *.
 
-    # Docker API version used on the server. If missing, the latest version is used.
-    # version: 1.10
+Usage
+-----
 
-    # Path to the Dockerfile used to build an image if it doesn't exist. If missing, current directory is used.
-    # path_to_dockerfile: docker/files
+.. code-block:: yaml
+    :caption: docker_exec.yml
 
-    # Memory limit in MB.
-    # memory_limit: 10
+    extensions:
+        run_in_docker:
+            # Use the module sloth_ci.ext.docker_exec.
+            module: docker_exec
 
-    # CPU share in per cent.
-    # cpu_share: 5
+            # Image name. If missing, slug of the Sloth app listen point is used.
+            # image: foo
 
-All config params are optional.
+            # Path to the Docker daemon to connect to. Can point to either a tcp URL or a unix socket. If missing, the client connects to /var/run/docker.sock.
+            # base_url: tcp://555.55.55.55:5555 *.
+
+            # Docker API version used on the server. If missing, the latest version is used.
+            # version: 1.10
+
+            # Path to the Dockerfile used to build an image if it doesn't exist. If missing, current directory is used.
+            # path_to_dockerfile: docker/files
+
+            # Memory limit in MB.
+            # memory_limit: 10
+
+            # CPU share in per cent.
+            # cpu_share: 5
 '''
 
 
 __title__ = 'sloth-ci.ext.docker_exec'
 __description__ = 'Docker executor app extension for Sloth CI'
-__version__ = '1.1.2'
+__version__ = '1.1.3'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
 
 
-def extend(cls, extension):
+def extend_sloth(cls, extension):
+    '''Replace the default ``execute`` method with the Docker-based one.'''
+
     from docker import Client
 
     from slugify import slugify
@@ -61,7 +77,7 @@ def extend(cls, extension):
 
             :param action: action to be executed
 
-            :returns: True if successful, Exception otherwise
+            :returns: True if the execution was successful; raises exception otherwise
             '''
 
             self.processing_logger.info('Executing action: %s', action)
@@ -93,5 +109,6 @@ def extend(cls, extension):
 
             except Exception:
                 raise
+
 
     return Sloth
