@@ -14,6 +14,7 @@ Usage
 -----
 
 .. code-block:: yaml
+    :caption: file_logs.yml
 
     extensions:
         logs:
