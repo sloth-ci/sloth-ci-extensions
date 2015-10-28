@@ -1,4 +1,4 @@
-﻿from setuptools import setup
+from setuptools import setup
 
 import robots_txt as ext
 
@@ -18,7 +18,7 @@ setup(
     package_dir={package: '.'},
     package_data={package: ['robots.txt']},
     install_requires = [
-        'sloth-ci>=1.2.8'
+        'sloth-ci>=2.0.0'
     ],
     license='MIT',
     classifiers=[
