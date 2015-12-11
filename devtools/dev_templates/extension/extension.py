@@ -1,4 +1,4 @@
-'''Utilities to help you develop extensions and validators for Sloth CI.
+'''Describe your extension.
 
 
 Installation
@@ -6,26 +6,29 @@ Installation
 
 .. code-block:: bash
 
-    $ pip install sloth-ci.ext.devtools
+    $ pip install sloth-ci.ext.$extension
 
 
 Usage
 -----
 
 .. code-block:: yaml
-    :caption: devtools.yml
+    :caption: $extension.yml
 
     extensions:
-        dev:
-            # Use the module sloth_ci.ext.devtools.
-            module: devtools
+        $extension:
+            # Use the module sloth_ci.ext.$extension.
+            module: $extension
+            param1: value1
+            param2: value2
+            ...
 '''
 
-__title__ = 'sloth-ci.ext.devtools'
-__description__ = 'Utilities for Sloth CI extension and validator development'
+__title__ = 'sloth-ci.ext.$extension'
+__description__ = 'Describe your extension'
 __version__ = '0.0.1'
-__author__ = 'Konstantin Molchanov'
-__author_email__ = 'moigagoo@live.com'
+__author__ = 'Your Name'
+__author_email__ = 'your@email.com'
 __license__ = 'MIT'
 
 
@@ -43,7 +46,7 @@ def extend_cli(cls, extension):
     '''Modify ``sloth_ci.cli.CLI`` to add new ``sci`` commands.
 
     :param cls: the base ``sloth_ci.cli.CLI`` class
-    :param extension: ``{'name': '{extension}', 'config': {param1: value2, param2: value2, ...}}``, extracted from the server config
+    :param extension: ``{'name': '$extension', 'config': {param1: value2, param2: value2, ...}}``, extracted from the server config
     '''
 
     return cls
@@ -53,7 +56,7 @@ def extend_sloth(cls, extension):
     '''Modify ``sloth_ci.sloth.Sloth`` to change affect app behavior: add loggers, override action executing routine, etc.
 
     :param cls: the base ``sloth_ci.sloth.Sloth`` class
-    :param extension: ``{'name': '{extension}', 'config': {param1: value2, param2: value2, ...}}``, extracted from the app config
+    :param extension: ``{'name': '$extension', 'config': {param1: value2, param2: value2, ...}}``, extracted from the app config
     '''
 
     return cls

@@ -17,8 +17,8 @@ setup(
     packages=[package],
     package_dir={package: '.'},
     package_data={package: ['robots.txt']},
-    install_requires = [
-        'sloth-ci>=2.0.0'
+    install_requires=[
+        'sloth-ci>=2.0.1'
     ],
     license='MIT',
     classifiers=[

@@ -24,7 +24,7 @@ Usage
 
 __title__ = 'sloth-ci.ext.devtools'
 __description__ = 'Utilities for Sloth CI extension and validator development'
-__version__ = '0.0.1'
+__version__ = '1.0.0'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -39,35 +39,47 @@ def extend_cli(cls, extension):
 
     from os import mkdir
     from os.path import join, dirname
-    from shutil import copy
 
-    from cliar import set_name
+    from string import Template
 
 
     class CLI(cls):
-        @set_name('create-extension')
-        def create_extension(self, name):
-            '''create an extension template'''
+        def __init__(self):
+            super().__init__()
 
-            extension_template = join(dirname(__file__), 'dev_templates/extension/extension.py')
-            setup_py_template = join(dirname(__file__), 'dev_templates/extension/setup.py')
+            self.template_path = join(dirname(__file__), 'dev_templates')
 
-            mkdir(name)
+        def dev(self, name, extension=False, validator=False):
+            '''create an extension or validator template'''
 
-            copy(extension_template, join(name, '%s.py' % name))
-            copy(setup_py_template, name)
+            if bool(extension) == bool(validator):
+                print('Run "sci dev -e NAME" to create an extension or "sci dev -v NAME" to create a validator.')
 
-        @set_name('create-validator')
-        def create_validator(self, name):
-            '''create a validator template'''
+            else:
+                mkdir(name)
 
-            validator_template = join(dirname(__file__), 'dev_templates/validator/extension.py')
-            setup_py_template = join(dirname(__file__), 'dev_templates/validator/setup.py')
+                if extension:
+                    source_template = Template(open(join(self.template_path, 'extension', 'extension.py')).read())
+                    setup_py_template = Template(open(join(self.template_path,'extension', 'setup.py')).read())
 
-            mkdir(name)
+                    with open(join(name, '%s.py' % name), 'w') as source:
+                        source.write(source_template.safe_substitute(extension=name))
 
-            copy(validator_template, join(name, '%s.py' % name))
-            copy(setup_py_template, name)
+                    with open(join(name, 'setup.py'), 'w') as setup_py:
+                        setup_py.write(setup_py_template.safe_substitute(extension=name))
 
+                    print('Extension "%s" created.' % name)
+
+                elif validator:
+                    source_template = Template(open(join(self.template_path, 'validator', 'validator.py')).read())
+                    setup_py_template = Template(open(join(self.template_path, 'validator', 'setup.py')).read())
+
+                    with open(join(name, '%s.py' % name), 'w') as source:
+                        source.write(source_template.safe_substitute(validator=name))
+
+                    with open(join(name, 'setup.py'), 'w') as setup_py:
+                        setup_py.write(setup_py_template.safe_substitute(validator=name))
+
+                    print('Validator "%s" created.' % name)
 
     return CLI
