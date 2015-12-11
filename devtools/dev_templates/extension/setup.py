@@ -1,6 +1,6 @@
 from setuptools import setup
 
-import {extension} as ext
+import $extension as ext
 
 
 package = 'sloth_ci.ext'
@@ -17,13 +17,11 @@ setup(
     packages=[package],
     package_dir={package: '.'},
     install_requires = [
-        'sloth-ci>=2.0.0'
+        'sloth-ci>=2.0.1'
     ],
     license='MIT',
     classifiers=[
-        'Development Status :: 5 - Production/Stable',
-        'Intended Audience :: Developers',
-        'Natural Language :: English',
+        'Development Status :: 1 - Planning',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3']
     )

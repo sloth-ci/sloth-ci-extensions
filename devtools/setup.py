@@ -17,8 +17,8 @@ setup(
     packages=[package],
     package_dir={package: '.'},
     package_data={package: ['dev_templates/*/*.py']},
-    install_requires = [
-        'sloth-ci>=2.0.0'
+    install_requires=[
+        'sloth-ci>=2.0.1'
     ],
     license='MIT',
     classifiers=[
