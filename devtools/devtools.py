@@ -12,6 +12,8 @@ Installation
 Usage
 -----
 
+Enable the extension in the server config:
+
 .. code-block:: yaml
     :caption: devtools.yml
 
@@ -19,12 +21,22 @@ Usage
         dev:
             # Use the module sloth_ci.ext.devtools.
             module: devtools
+
+Use the ``sci dev`` command to create extensions and validators:
+
+.. code-block:: bash
+
+    $ sci dev -e spam
+    Extension "spam" created.
+
+    $ sci dev -v eggs
+    Validator "eggs" created.
 '''
 
 
 __title__ = 'sloth-ci.ext.devtools'
 __description__ = 'Utilities for Sloth CI extension and validator development'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
