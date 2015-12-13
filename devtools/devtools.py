@@ -22,7 +22,7 @@ Enable the extension in the server config:
             # Use the module sloth_ci.ext.devtools.
             module: devtools
 
-Use the ``sci dev`` command to create extensions and validators:
+Call the ``sci dev`` with ``-e`` or ``-v`` to create an extensions or a validator template:
 
 .. code-block:: bash
 
@@ -47,7 +47,7 @@ def extend_bed(cls, extension):
 
 
 def extend_cli(cls, extension):
-    '''Add CLI commands to create extension and validator dev_templates.'''
+    '''Add CLI commands to create extension and validator templates.'''
 
     from os import mkdir
     from os.path import join, dirname
