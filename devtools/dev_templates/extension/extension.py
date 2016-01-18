@@ -53,7 +53,7 @@ def extend_cli(cls, extension):
 
 
 def extend_sloth(cls, extension):
-    '''Modify ``sloth_ci.sloth.Sloth`` to change affect app behavior: add loggers, override action executing routine, etc.
+    '''Modify ``sloth_ci.sloth.Sloth`` to affect app behavior: add loggers, override action executing routine, etc.
 
     :param cls: the base ``sloth_ci.sloth.Sloth`` class
     :param extension: ``{'name': '$extension', 'config': {param1: value2, param2: value2, ...}}``, extracted from the app config
