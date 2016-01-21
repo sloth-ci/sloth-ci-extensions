@@ -24,4 +24,4 @@ setup(
         'Development Status :: 1 - Planning',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3']
-    )
+)
