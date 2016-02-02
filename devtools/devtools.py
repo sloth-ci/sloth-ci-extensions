@@ -36,7 +36,7 @@ Call the ``sci dev`` with ``-e`` or ``-v`` to create an extensions or a validato
 
 __title__ = 'sloth-ci.ext.devtools'
 __description__ = 'Utilities for Sloth CI extension and validator development'
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -94,6 +94,6 @@ def extend_cli(cls, extension):
                     with open(join(destination_path, 'setup.py'), 'w') as setup_py:
                         setup_py.write(setup_py_template.safe_substitute(validator=name))
 
-                    print('Validator "%s" created.' % name)
+                    print('Validator "%s" created in %s' % (name, destination_path))
 
     return CLI
