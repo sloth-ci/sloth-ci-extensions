@@ -41,7 +41,6 @@ def validate(request, validation_data):
     from collections import namedtuple
 
 
-    response = namedtuple('Response', ('status', 'message', 'param_dicts'))
+    Response = namedtuple('Response', ('status', 'message', 'param_dicts'))
 
-    return response(200, 'Payload validated. Branches: default', [{'branch': 'default'}])
-
+    return Response(200, 'Payload validated. Branches: default', [{'branch': 'default'}])
