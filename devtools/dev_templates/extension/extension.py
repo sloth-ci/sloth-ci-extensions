@@ -39,7 +39,10 @@ def extend_bed(cls, extension):
     :param extension: ``{'name': '{extension}', 'config': {param1: value2, param2: value2, ...}}``, extracted from the server config
     '''
 
-    return cls
+    class Bed(cls):
+        pass
+
+    return Bed
 
 
 def extend_cli(cls, extension):
@@ -49,7 +52,10 @@ def extend_cli(cls, extension):
     :param extension: ``{'name': '$extension', 'config': {param1: value2, param2: value2, ...}}``, extracted from the server config
     '''
 
-    return cls
+    class CLI(cls):
+        pass
+
+    return CLI
 
 
 def extend_sloth(cls, extension):
@@ -59,4 +65,7 @@ def extend_sloth(cls, extension):
     :param extension: ``{'name': '$extension', 'config': {param1: value2, param2: value2, ...}}``, extracted from the app config
     '''
 
-    return cls
+    class Sloth(cls):
+        pass
+
+    return Sloth

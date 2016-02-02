@@ -36,7 +36,7 @@ Call the ``sci dev`` with ``-e`` or ``-v`` to create an extensions or a validato
 
 __title__ = 'sloth-ci.ext.devtools'
 __description__ = 'Utilities for Sloth CI extension and validator development'
-__version__ = '1.0.2'
+__version__ = '1.0.3'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
