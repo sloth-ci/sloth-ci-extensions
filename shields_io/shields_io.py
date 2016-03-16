@@ -40,7 +40,7 @@ Usage
 
 __title__ = 'sloth-ci.ext.shields_io'
 __description__ = 'Status build shields for Sloth CI powered by http://shields.io'
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -91,8 +91,11 @@ def extend_bed(cls, extension):
                     if not listen_point in self.sloths:
                         raise KeyError(listen_point)
 
-                    shield_colors = {**self._shield_colors, **self._shields_config.get('colors', {})}
+                    shield_colors = self._shield_colors
+                    shield_colors.update(self._shields_config.get('colors', {}))
+
                     shield_style = kwargs.get('style', self._shield_style)
+
                     shield_format = kwargs.get('format', self._shield_format)
 
                     info = self.info({'listen_point': listen_point})
