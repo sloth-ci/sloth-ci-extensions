@@ -42,7 +42,7 @@ Usage
 
 #.  Use the URL http://host:port/app?action=shield to get your badge.
 
-    You can customize the badge on the fly by passing ``label``, ``style``, and``format`` query params:
+    You can customize the badge on the fly by passing ``label``, ``style``, and ``format`` query params:
 
     -   http://host:port/app?action=shield&label=Build%20for%20{app}
     -   http://host:port/app?action=shield&style=social
@@ -52,7 +52,7 @@ Usage
 
 __title__ = 'sloth-ci.ext.shields_io'
 __description__ = 'Status build shields for Sloth CI powered by http://shields.io'
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
