@@ -1,8 +1,4 @@
-'''Status build shields for Sloth CI powered by http://shields.io.
-
-Enable the extension in the server config and go to http://host:port/app?action=shield to get the shield for ``app``.
-
-Use ``colors``, ``style``, and ``format`` params to customize the badge. You can set these params for all apps in the config and override them with query params when requesting a badge.
+'''Status build badges for Sloth CI powered by http://shields.io.
 
 
 Installation
@@ -16,26 +12,38 @@ Installation
 Usage
 -----
 
-.. code-block:: yaml
-    :caption: sloth.yml
+#.  Enable the extension in the server config:
 
-    extensions:
-        shields:
-            # Use the module sloth_ci.ext.shields_io.
-            module: shields_io
+        .. code-block:: yaml
+            :caption: sloth.yml for Shields.io
 
-            # Default color map for build statuses
-            colors:
-                INFO: green
-                WARNING: yellowgreen
-                ERROR: orange
+            extensions:
+                shields:
+                    # Use the module sloth_ci.ext.shields_io.
+                    module: shields_io
 
-            # See available styles on http://shields.io/
-            style: social
+                    # Color map for build statuses
+                    # colors:
+                    #    INFO: green # default is ``brightgreen``
+                    #    WARNING: yellowgreen # default is ``yellow``
+                    #    ERROR: orange # default is ``red``
 
-            # See available formats on http://shields.io/
-            format: png
-            ...
+                    # Badge style: ``plastic``, ``flat``, ``flat-square``, or ``social``
+                    # style: social # default is ``flat``
+
+                    # Badge format: svg, png, jpg, or gif
+                    # format: png # default is svg
+                    ...
+
+    All params are optional.
+
+#.  Use the URL http://host:port/app?action=shield to get your badge.
+
+    You can customize the badge on the fly by passing ``style`` and ``format`` query params:
+
+    -   http://host:port/app?action=shield&style=social
+    -   http://host:port/app?action=shield&format=png
+
 '''
 
 __title__ = 'sloth-ci.ext.shields_io'
