@@ -1,4 +1,4 @@
-'''Status build badges for Sloth CI powered by http://shields.io.
+'''Status build badges for Sloth CI apps, powered by http://shields.io.
 
 
 Installation
@@ -22,17 +22,20 @@ Usage
                     # Use the module sloth_ci.ext.shields_io.
                     module: shields_io
 
-                    # Color map for build statuses
-                    # colors:
-                    #    INFO: green # default is ``brightgreen``
-                    #    WARNING: yellowgreen # default is ``yellow``
-                    #    ERROR: orange # default is ``red``
+                    # Badge label. You can use the ``{app}`` placeholder for the app name
+                    # label: My Sloth CI Status for {app} # default is ``Sloth CI: {app}``
 
                     # Badge style: ``plastic``, ``flat``, ``flat-square``, or ``social``
                     # style: social # default is ``flat``
 
                     # Badge format: svg, png, jpg, or gif
                     # format: png # default is svg
+
+                    # Color map for build statuses
+                    # colors:
+                    #    INFO: green # default is ``brightgreen``
+                    #    WARNING: yellowgreen # default is ``yellow``
+                    #    ERROR: orange # default is ``red``
                     ...
 
     All params are optional.
@@ -48,7 +51,7 @@ Usage
 
 __title__ = 'sloth-ci.ext.shields_io'
 __description__ = 'Status build shields for Sloth CI powered by http://shields.io'
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 __author__ = 'Konstantin Molchanov'
 __author_email__ = 'moigagoo@live.com'
 __license__ = 'MIT'
@@ -67,6 +70,7 @@ def extend_bed(cls, extension):
 
             self._shields_config = extension['config']
 
+            self._shield_label = self._shields_config.get('label', 'Sloth CI: {app}')
             self._shield_colors = {
                 'INFO': 'brightgreen',
                 'WARNING': 'yellow',
@@ -99,6 +103,8 @@ def extend_bed(cls, extension):
                     if not listen_point in self.sloths:
                         raise KeyError(listen_point)
 
+                    shield_label = kwargs.get('label', self._shield_label)
+
                     shield_colors = self._shield_colors
                     shield_colors.update(self._shields_config.get('colors', {}))
 
@@ -107,13 +113,17 @@ def extend_bed(cls, extension):
                     shield_format = kwargs.get('format', self._shield_format)
 
                     info = self.info({'listen_point': listen_point})
-
                     status, level = info['last_build_status_message'], info['last_build_status_level']
 
-                    shield_url = 'https://img.shields.io/badge/Sloth_CI-{status}-{color}.{format}?style={style}'.format(
+                    shield_url = (
+                        'https://img.shields.io/badge/' +
+                        '-{status}-{color}.{format}' +
+                        '?label={label}&style={style}'
+                    ).format(
                         status=status,
                         color=shield_colors[level],
                         format=shield_format,
+                        label=shield_label.format(app=listen_point),
                         style=shield_style
                     )
 
